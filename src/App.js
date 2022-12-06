@@ -7,16 +7,16 @@ import Banner from "./banner"
 
 function App() {
   return (
+    <div>
     <BrowserRouter>
-
-        <Banner />
- 
+      <Banner />
       <div className="container">
           <Routes>
             <Route path="/*" element={<HomeComponent/>}/>
           </Routes>
         </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </div>
   );
 }
 
