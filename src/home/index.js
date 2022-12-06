@@ -1,9 +1,10 @@
 import React from "react";
+import Searchbar from "./searchbar";
 
 const HomeComponent = () => {
   return (
     <>
-      <h4>Home</h4>
+      <Searchbar/>
       {/* <WhatsHappening />
       <TuitsList /> */}
     </>
