@@ -19,3 +19,68 @@ body > #root > div {
   background-color: #1E1E1E;
   color: #FFFFFF;
 }
+
+.btn.btn-primary { 
+  background-color: #1E1E1E;
+  border-color: #C8C8C8;
+}
+
+.btn.btn-primary.override-bs {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #105cd4;
+  border-color: transparent;
+}
+
+a:link {
+  text-decoration: none;
+  color: white;
+  background-color: transparent;
+}
+
+a:visited {
+  text-decoration: none;
+  color: white;
+  background-color: transparent;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+  background-color: transparent;
+}
+
+a:active {
+  text-decoration: none;
+  color: white;
+  background-color: transparent;
+}
+
+.form-control.override-bs { 
+  background-color: #1E1E1E;
+  color: #FFFFFF;
+  border-color: #C8C8C8;
+ }
+
+.wd-center {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;  
+  align-items: center;  
+}
+
+.wd-fill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden
+}
+.wd-fill img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%
+}
+
+.wd-text-align-left { text-align: left; }
