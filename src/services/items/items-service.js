@@ -11,7 +11,12 @@ export const createItem = async (item) => {
   return response.data;
 }
 
-export const findRecentItems = async (itemIds) => {
+export const findRecentLikes = async (itemIds) => {
+  const response = await api.post(`${ITEMS_API}/findRecentItems`, {itemIds: itemIds});
+  return response.data;
+}
+
+export const findRecentListings = async (itemIds) => {
   const response = await api.post(`${ITEMS_API}/findRecentItems`, {itemIds: itemIds});
   return response.data;
 }
