@@ -9,17 +9,23 @@ const EditProfileComponent = () => {
   const [email, setEmail] = useState(currentUser.email);
   const [phoneNumber, setPhoneNumber] = useState(currentUser.phoneNumber);
   const [password, setPassword] = useState(currentUser.password);
+  const [address, setAddress] = useState(currentUser.address);
   const [avatar, setAvatar] = useState(currentUser.avatar);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onSave = () => {
-    const updatedUser = { currentUser };
-    updatedUser.username = username;
-    updatedUser.email = email;
-    updatedUser.phoneNumber = phoneNumber;
-    updatedUser.password = password;
-    updatedUser.avatar = avatar;
-    
+    const updatedUser = {
+      username: username,
+      email: email,
+      phoneNumber: phoneNumber,
+      password: password,
+      address: address,
+      avatar: avatar,
+      role: currentUser.role,
+      likes: currentUser.likes,
+      listings: currentUser.listings,
+      reviews: currentUser.reviews,
+    }
     dispatch(updateThunk(updatedUser))
     navigate("/profile")
   }
@@ -47,6 +53,8 @@ const EditProfileComponent = () => {
             <TextBox placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
             <TextBox placeholder="Phone number" value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} />
             <TextBox placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
+            <TextBox placeholder="Address" onChange={(event) => setAddress(event.target.value)} />
+
             <div className="row">
               <button className="col btn btn-primary rounded-pill ms-3 me-3" style={{ backgroundColor: "#105cd4", borderColor: "transparent" }} onClick={onSave}><b>Save</b></button>
               <button className="col btn btn-secondary override-bs rounded-pill ms-3 me-3" onClick={onCancel}><b>Cancel</b></button>

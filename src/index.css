@@ -78,8 +78,14 @@ a:active {
 }
 
 .wd-text-align-left { text-align: left; }
+.wd-text-align-right { text-align: right; }
 
 .row {
   display: flex;
   align-items: center;
+}
+
+.wd-white-on-bg-color-dark-gray { 
+  background-color: #1E1E1E;
+  color: white;
 }

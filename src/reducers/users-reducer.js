@@ -5,9 +5,9 @@ const usersSlice = createSlice({
   name: "users",
   initialState: {
     users: [],
-        loading: false,
-        currentUser: null,
-        publicProfile: null
+    loading: false,
+    currentUser: null,
+    publicProfile: null
   },
   extraReducers: {
     [signupThunk.fulfilled]:

@@ -14,12 +14,21 @@ const HomeComponent = () => {
       <div className="ps-5 pe-5">
         <Searchbar />
         <b className="wd-text-align-left">Trending Items</b>
-        <ItemPreviewList items={trendingItems} renderHeart={true} />
+        <ItemPreviewList items={trendingItems} renderHeart={currentUser === "BUYER"} />
         {
-          currentUser !== ?
+          currentUser !== null && currentUser.role === "BUYER" ?
           <div>
             <b className="wd-text-align-left">Your recent likes</b>
             <ItemPreviewList renderHeart={true} />
+          </div>
+          :
+            <></>
+        }
+        {
+          currentUser !== null && currentUser.role === "SELLER" ?
+          <div>
+            <b className="wd-text-align-left">Your recent listings</b>
+            <ItemPreviewList renderHeart={false} />
           </div>
           :
             <></>
