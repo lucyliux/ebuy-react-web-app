@@ -6,7 +6,12 @@ export const createItemThunk = createAsyncThunk(
     async (item) => await service.createItem(item)
 );
 
-export const findRecentItemsThunk = createAsyncThunk(
-  "findRecentItems",
-  async (itemIds) => await service.findRecentItems(itemIds)
+export const findRecentLikesThunk = createAsyncThunk(
+  "findRecentLikes",
+  async (itemIds) => await service.findRecentLikes(itemIds)
+);
+
+export const findRecentListingsThunk = createAsyncThunk(
+  "findRecentListings",
+  async (itemIds) => await service.findRecentListings(itemIds)
 );
