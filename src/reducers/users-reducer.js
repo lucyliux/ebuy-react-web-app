@@ -1,8 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import user from "../data/user.json";
 import { loginThunk, logoutThunk, profileThunk, signupThunk, updateThunk } from "../services/users/users-thunks"
-import { useDispatch } from "react-redux";
-// import { getSessionAllThunk } from "../services/sessions/sessions-thunks";
 
 const usersSlice = createSlice({
   name: "users",

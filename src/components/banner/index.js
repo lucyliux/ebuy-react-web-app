@@ -7,20 +7,11 @@ import { logoutThunk, profileThunk } from "../../services/users/users-thunks";
 
 const Banner = () => {
   const { currentUser } = useSelector((state) => state.users);
-  const dispatch = useDispatch();
-  // dispatch(getSessionAllThunk());
-  // const { currentSession } = useSelector((state) => state.sessions);
-  // dispatch(profileThunk());
-  console.log("profile");
-  console.log(currentUser);
-  var url = "/";
-  // console.log(currentSession);
-  // url = "/:&" + currentSession;
   
   return (
     <>
       <div className="pt-2" style={{marginBottom: "-50px"}}>
-          <a href={url}>
+          <a href="/">
             <h1 className="mb-0" style={{ textAlign: "center" }}>
               eBuy
             </h1>

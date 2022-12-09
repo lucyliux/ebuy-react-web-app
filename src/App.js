@@ -11,7 +11,6 @@ import RegisterComponent from './components/register'
 import Profile from './components/profile';
 import trendingItemsReducer from './reducers/trending-items-reducer';
 import usersReducer from './reducers/users-reducer';
-// import sessionsReducer from './reducers/sessions-reducer';
 import CurrentUser from "./services/users/current-user";
 import ProtectedRoute from './services/users/protected-route';
 
@@ -19,14 +18,12 @@ const store = configureStore({
   reducer: {
     trendingItems: trendingItemsReducer,
     users: usersReducer,
-    // sessions: sessionsReducer,
   },
 });
 
 function App() {
   return (
     <Provider store={store}>
-    {/* <div> */}
       <BrowserRouter>
       <CurrentUser>
       <Banner />
@@ -41,15 +38,10 @@ function App() {
                   <Profile />
                 </ProtectedRoute>
               } />
-                
-              {/* <ProtectedRoute>
-                <Profile/>
-              </ProtectedRoute> */}
           </Routes>
           </div>
           </CurrentUser>
       </BrowserRouter>
-      {/* </div> */}
       </Provider>
   );
 }

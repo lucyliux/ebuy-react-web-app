@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {profileThunk, signupThunk} from "../../services/users/users-thunks";
-import * as service from "../../services/users/users-service";
 import {useNavigate} from "react-router-dom";
-// import { getSessionAllThunk } from "../../services/sessions/sessions-thunks";
 
 const RegisterComponent = () => {
   let [role, setRole] = useState("");
@@ -44,10 +42,9 @@ const RegisterComponent = () => {
         // alert("username already exists");
         // })
         .then(() => {
-          // dispatch(getSessionAllThunk());
-          dispatch(profileThunk());
+          // dispatch(profileThunk());
           alert("Success!");
-          navigate('/profile');
+          navigate('/');
         });
     }
   };
