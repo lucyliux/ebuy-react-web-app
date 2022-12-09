@@ -16,7 +16,7 @@ const HomeComponent = () => {
         <b className="wd-text-align-left">Trending Items</b>
         <ItemPreviewList items={trendingItems} renderHeart={true} />
         {
-          currentUser !== null ?
+          currentUser !== ?
           <div>
             <b className="wd-text-align-left">Your recent likes</b>
             <ItemPreviewList renderHeart={true} />
