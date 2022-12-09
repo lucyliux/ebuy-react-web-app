@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import ItemPreviewList from "../item-preview-list";
+import ItemPreviewList from "../../item-preview-list";
 
-const ProfileComponent = () => {
+const SellerProfile = () => {
   const { currentUser } = useSelector((state) => state.users);
   return (
     <>
@@ -16,18 +16,18 @@ const ProfileComponent = () => {
           <div className="col"><EditProfileButton /></div>
         </div>
         <UserInfo user={currentUser} />
-        <LikedItems />
+        <hr/>
+        <Listing user={currentUser} />
       </div>
     </>
   )
 }
 
-const RoleTag = ({ role="BUYER" }) => {
+const RoleTag = () => {
   return (
     <>
       <div className="rounded">
-        {role === "BUYER" && <span className="rounded border border-success text-success p-1 ps-3 pe-3">Buyer</span>}
-        {role === "SELLER" && <span className="rounded border border-warning text-warning p-1 ps-3 pe-3">Seller</span>}
+        <span className="rounded border border-warning text-warning p-1 ps-3 pe-3">Seller</span>
       </div>
     </>
   )
@@ -59,14 +59,28 @@ const UserInfo = ({ user }) => {
   )
 }
 
-const LikedItems = ({ user }) => {
+const Listing = ({ user }) => {
+  const {recentListings} = useSelector((state) => state.items);
+  console.log("listings");
+  console.log(recentListings);
+  const navigate = useNavigate();
+  const handleNewListingClick = () => {
+    navigate("/profile/seller/create-listing")
+  }
   return (
     <>
-      <div className="mt-4">
-        <b className="wd-text-align-left">Liked items</b>
-        <ItemPreviewList items={[]} />
+      <div>
+        <div className="row">
+          <b className="col-1 wd-text-align-left">Listings</b>
+          <button className="col-2 btn btn-primary rounded p-0" style={{height: "25px", width: "160px", fontSize: "15px"}} onClick={handleNewListingClick}>+ Create new listing</button>
+          <b className="col wd-text-align-right">See all</b>
+        </div>
+        <ItemPreviewList items={recentListings}
+          // {listings.slice(listings.length - 4, listings.length)}
+        />
       </div>
     </>
-  )
+)
 }
-export default ProfileComponent;
+
+export default SellerProfile;

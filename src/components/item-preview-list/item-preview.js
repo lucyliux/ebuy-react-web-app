@@ -14,7 +14,7 @@ const ItemPreview = ({ item, renderHeart = false, renderX = false }) => {
   const liked = likedList.includes(item._id);
   return (
     <>
-      <div className="wd-fill" style={{ width: "250px", height: "250px"}}>
+      <div className="wd-fill" style={{ width: "250px", height: "250px", backgroundColor: "gray"}}>
         <img  src={item.image} alt="img"/>
       </div>
       <span style={{ position: "relative", bottom: "30px", left: "10px" }}>{item.name}</span>

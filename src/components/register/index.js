@@ -34,6 +34,9 @@ const RegisterComponent = () => {
         email: email,
         phoneNumber: phoneNumber,
         password: password,
+        likes: "",
+        listings: "",
+        reviews: "",
       };
       dispatch(signupThunk(newUser))
         // .catch((err) => {

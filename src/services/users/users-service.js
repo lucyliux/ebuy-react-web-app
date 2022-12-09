@@ -33,12 +33,13 @@ export const profile = async () =>
    api.post(`${SECURITY_API}/profile`)
        .then(response => response.data);
 
-export const currentUser = async () =>
-    await api.post(`${SECURITY_API}/profile`)
-      .then(response => response.data);
-       
+
+
+
+
+
 export const update = async (user) =>
-   api.put(`${BASE_URL}/update`, user)
+   api.put(USER_API_URL, user)
       .then(response => response.data);
 // export const findUserByUsername = async (username) => {
 //   const response = await axios.get(USERS_API + "/" + username);
