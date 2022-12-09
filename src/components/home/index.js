@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import Searchbar from "./searchbar";
 import ItemPreviewList from "../item-preview-list";
 import { useSelector } from "react-redux";
+import AllListings from "../all-listings";
 
 const HomeComponent = () => {
   const trendingItems = useSelector((state) => state.trendingItems);
@@ -14,12 +15,12 @@ const HomeComponent = () => {
       <div className="ps-5 pe-5">
         <Searchbar />
         <b className="wd-text-align-left">Trending Items</b>
-        <ItemPreviewList items={trendingItems} renderHeart={currentUser === "BUYER"} />
+        <AllListings items={trendingItems} renderHeart={currentUser === "BUYER"} />
         {
           currentUser !== null && currentUser.role === "BUYER" ?
           <div>
             <b className="wd-text-align-left">Your recent likes</b>
-            <ItemPreviewList renderHeart={true} />
+            <AllListings renderHeart={true} />
           </div>
           :
             <></>
@@ -28,7 +29,7 @@ const HomeComponent = () => {
           currentUser !== null && currentUser.role === "SELLER" ?
           <div>
             <b className="wd-text-align-left">Your recent listings</b>
-            <ItemPreviewList renderHeart={false} />
+            <AllListings renderHeart={false} />
           </div>
           :
             <></>
