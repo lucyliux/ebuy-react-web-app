@@ -14,6 +14,8 @@ import usersReducer from './reducers/users-reducer';
 import itemsReducer from './reducers/items-reducer';
 import CurrentUser from "./services/users/current-user";
 import ProtectedRoute from './services/users/protected-route';
+import SearchResult from './components/search-result.js';
+import ItemDetail from './components/itemDetail'
 
 const store = configureStore({
   reducer: {
@@ -33,13 +35,14 @@ function App() {
           <Routes>
             <Route path="/*" element={<HomeComponent />} />
             <Route path="/login" element={<LoginComponent />} />
-              <Route path="/register" element={<RegisterComponent />} />
-             
-              <Route path="/profile*" element={
-                 <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              } />
+            <Route path="/register" element={<RegisterComponent />} />
+            <Route path="/search-result" element={<SearchResult />} />
+            <Route path="/item-details/:itemId" element={<ItemDetail />} />
+            <Route path="/profile*" element={
+                <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            } />
           </Routes>
           </div>
           </CurrentUser>

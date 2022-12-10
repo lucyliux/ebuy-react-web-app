@@ -32,7 +32,6 @@ const CreateListingComponent = () => {
     else {
       const newItem = {
         name: itemName,
-        date: new Date(),
         condition: condition,
         price: Number(price),
         image: image,
@@ -54,10 +53,8 @@ const CreateListingComponent = () => {
          };
         updatedSeller.listings = response.payload._id + "," + updatedSeller.listings;
         dispatch(updateThunk(updatedSeller)).then(() => {
-          // const listingIds = updatedSeller.listings.split(",").filter((str) => str !== "");
-          console.log(updatedSeller.listings);
-          dispatch(findRecentListingsThunk(updatedSeller.listings)).then(
-            navigate("/profile"));
+          dispatch(findRecentListingsThunk(currentUser.listings));
+          navigate("/profile")
         });
         
       });

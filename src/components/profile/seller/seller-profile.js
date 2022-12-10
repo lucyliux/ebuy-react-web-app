@@ -1,5 +1,6 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { findRecentListingsThunk } from "../../../services/items/items-thunks";
 import ItemPreviewList from "../../item-preview-list";
 
 const SellerProfile = () => {
@@ -17,7 +18,7 @@ const SellerProfile = () => {
         </div>
         <UserInfo user={currentUser} />
         <hr/>
-        <Listing user={currentUser} />
+        <Listings user={currentUser} />
       </div>
     </>
   )
@@ -59,10 +60,8 @@ const UserInfo = ({ user }) => {
   )
 }
 
-const Listing = ({ user }) => {
+const Listings = ({ user }) => {
   const {recentListings} = useSelector((state) => state.items);
-  console.log("listings");
-  console.log(recentListings);
   const navigate = useNavigate();
   const handleNewListingClick = () => {
     navigate("/profile/seller/create-listing")
@@ -75,9 +74,7 @@ const Listing = ({ user }) => {
           <button className="col-2 btn btn-primary rounded p-0" style={{height: "25px", width: "160px", fontSize: "15px"}} onClick={handleNewListingClick}>+ Create new listing</button>
           <b className="col wd-text-align-right">See all</b>
         </div>
-        <ItemPreviewList items={recentListings}
-          // {listings.slice(listings.length - 4, listings.length)}
-        />
+        <div className="mt-1"><ItemPreviewList items={recentListings} /></div>
       </div>
     </>
 )

@@ -17,7 +17,7 @@ const BuyerProfile = () => {
         </div>
         <UserInfo user={currentUser} />
         <hr/>
-        <LikedItems user={currentUser} />
+        {/* <LikedItems user={currentUser} /> */}
       </div>
     </>
   )

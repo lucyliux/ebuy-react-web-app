@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "../../services/users/users-thunks";
+import { findRecentListingsThunk } from "../../services/items/items-thunks";
 // import { getSessionAllThunk } from "../../services/sessions/sessions-thunks";
 
 const LoginComponent = () => {
@@ -11,7 +12,8 @@ const LoginComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {currentUser} = useSelector((state) => state.users)
-
+  console.log("login");
+  console.log(currentUser);
   const loginClickHandler = () => {
     
   const credentials = {
@@ -32,7 +34,8 @@ const LoginComponent = () => {
     
   }
   if (currentUser) {
-    return (navigate('/profile'))
+    dispatch(findRecentListingsThunk(currentUser.listings));
+    return (navigate('/profile'));
   }
   return (
     <>

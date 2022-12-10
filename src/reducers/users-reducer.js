@@ -4,7 +4,7 @@ import { loginThunk, logoutThunk, profileThunk, signupThunk, updateThunk } from 
 const usersSlice = createSlice({
   name: "users",
   initialState: {
-    users: [],
+    allUsers: [],
     loading: false,
     currentUser: null,
     publicProfile: null
@@ -15,12 +15,17 @@ const usersSlice = createSlice({
         state.currentUser = action.payload;
         console.log("payload")
         console.log(state.currentUser)
+        console.log(action);
+        state.allUsers.push(action.payload);
       },
     [loginThunk.fulfilled]:
       (state, action) => {
         state.currentUser = action.payload;
+        // state.users.push(action.payload);
+        console.log(state.allUsers);
         // console.log("payload")
-        // console.log(state.currentUser)
+        console.log(action);
+        console.log(action.payload)
       },
     [profileThunk.fulfilled]:
       (state, action) => {

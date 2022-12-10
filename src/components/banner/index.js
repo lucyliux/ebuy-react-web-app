@@ -7,7 +7,8 @@ import { logoutThunk, profileThunk } from "../../services/users/users-thunks";
 
 const Banner = () => {
   const { currentUser } = useSelector((state) => state.users);
-  
+  console.log("curenntrr");
+  console.log(currentUser);
   return (
     <>
       <div className="pt-2" style={{marginBottom: "-50px"}}>
@@ -17,7 +18,7 @@ const Banner = () => {
             </h1>
         </a>
         {
-          currentUser === null &&
+          (currentUser === null || currentUser === undefined) &&
           <div className="row m-0 me-5 pt-3 float-right justify-content-end position-relative" style={{ bottom: "65px" }}>
             <LoginRegisterButton name="Login" path="login" />
             <LoginRegisterButton name="Register" path="register" />
@@ -77,7 +78,7 @@ const LogoutButton = () => {
 const Profile = ({ user }) => {
   return (
     <>
-      <a href="profile" className="wd-fill rounded-circle position-relative" style={{ width: "40px", height: "40px", backgroundColor: "gray"}}>
+      <a href="/profile" className="wd-fill rounded-circle position-relative" style={{ width: "40px", height: "40px", backgroundColor: "gray"}}>
         <img  src={user.avatar} alt="img"/>
       </a>
     </>
