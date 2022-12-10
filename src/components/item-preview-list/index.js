@@ -18,18 +18,6 @@ const ItemPreviewList = ({ items = itemsExample, renderHeart = false, renderX = 
       <div className="row">
         {items.map((item) => {
           let colDisplay = "col";
-          // if (item === items[0]) {
-          //   colDisplay = "col-lg-4 col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
-          // }
-          // else if (item === items[1]) {
-          //   colDisplay = "col-md-6 col-lg-4 col-xl-3 d-none d-sm-none d-md-block"
-          // }
-          // else if (item === items[2]) {
-          //   colDisplay = "col-lg-4 col-xl-3 d-none d-md-none d-lg-block"
-          // }
-          // else if (item === items[3]) {
-          //   colDisplay = "col-xl-3 d-none d-xl-block"
-          // }
           return (
             <>
               <div className={colDisplay}><ItemPreview item={item} renderHeart={renderHeart} renderX={renderX} /></div>

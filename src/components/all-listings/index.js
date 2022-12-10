@@ -1,6 +1,7 @@
 import React from "react";
 import ItemPreview from "../item-preview-list/item-preview"
-import ItemPreviewList from "../item-preview-list";
+import {useSelector} from "react-redux";
+
 const itemsExample = [
     {
         _id: "123",
@@ -13,30 +14,25 @@ const itemsExample = [
     }
 ]
 
-const AllListings = ({ items = itemsExample, renderHeart = false, renderX = false}) => {
-    let allListings = [];
-    let allListingsCopy = [...allListings];
-    let numPreviewLists = items.length/4;
-    if (items.length % 4 !== 0) {
-        numPreviewLists += 1;
+const AllListings = ({items = itemsExample, renderHeart = false, renderX = false}) => {
+    const {currentUser} = useSelector((state)=>state.users);
+    let headerText = "";
+    if (currentUser.role === "SELLER") {
+        headerText = "All Listings";
+    } else {
+        headerText = "All Likes";
     }
 
-    for (let i = 0; i < numPreviewLists; i++) {
-        let itemNum = 0;
-        let allListingsCopy = [...allListings];
-        allListingsCopy.push(<ItemPreviewList items={items.splice(itemNum, 4)}/>);
-        itemNum += 4;
-    }
     return (
         <>
+            <h4>{headerText}</h4>
             <div className="row">
-                {allListingsCopy.map((listing) => {
+                {items.map((item) => {
                     let colDisplay = "col";
                     return (
                         <>
-                            <div className={colDisplay}>
-                                listing
-                            </div>
+                            <div className={colDisplay}><ItemPreview item={item} renderHeart={renderHeart}
+                                                                     renderX={renderX}/></div>
                         </>
                     )
                 })}
