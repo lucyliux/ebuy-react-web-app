@@ -1,14 +1,16 @@
 import axios from "axios";
-const USER_API_URL = "http://localhost:4000/api/users";
-const BASE_URL = "http://localhost:4000/api";
-const SECURITY_API = `${BASE_URL}/auth`;
+import { API_BASE } from "../api";
+const USER_API_URL = `${API_BASE}/users`;
+const SECURITY_API = `${API_BASE}/auth`;
 
 const api = axios.create({
   withCredentials: true,
 });
 
 export const signup = async (user) => {
-  const response = await api.post(`${SECURITY_API}/signup`, user);
+  const response = await api.post(`${SECURITY_API}/signup`, user).catch((err)=>alert("Username already exists"));
+  // alert("Username already exists");
+
   //   .catch((err) => {
   //   console.log(err.response.data);
   //   console.log(err.response.status);

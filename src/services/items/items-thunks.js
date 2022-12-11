@@ -9,21 +9,21 @@ export const createItemThunk = createAsyncThunk(
 export const findRecentLikesThunk = createAsyncThunk(
   "findRecentLikes",
   async (itemIds) => {
-    // let recentLikes = itemIds;
-    // const remoteLikes = await service.findRecentRemoteLikes(recentLikes);
-    // remoteLikes.forEach(item => { recentLikes = recentLikes.replace(item._id, "") });
-    // console.log(recentLikes)
-    // const mongoLikes = await service.findRecentMongoLikes(recentLikes);
-    // return remoteLikes.concat(mongoLikes);
-    return {
-      _id: "639357f0cfa29b7e706cf199",
-      name: "haha",
-  condition: "NEW",
-  price: 12,
-  image: "",
-  description: "haha",
-  sellerName: "seller3",
-    };
+    let recentLikes = itemIds;
+    const remoteLikes = await service.findRecentRemoteLikes(recentLikes);
+    remoteLikes.forEach(item => { recentLikes = recentLikes.replace(item._id, "") });
+    console.log(recentLikes)
+    const mongoLikes = await service.findRecentMongoLikes(recentLikes);
+    return remoteLikes.concat(mongoLikes);
+  //   return {
+  //     _id: "639357f0cfa29b7e706cf199",
+  //     name: "haha",
+  // condition: "NEW",
+  // price: 12,
+  // image: "",
+  // description: "haha",
+  // sellerName: "seller3",
+  //   };
   }
 );
 
