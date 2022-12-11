@@ -2,12 +2,12 @@ import axios from 'axios';
 import { API_BASE } from "../api";
 const ITEMS_API = `${API_BASE}/items`;
 
-const config = {
-  headers: {
-   'Access-Control-Allow-Origin' : '*',
-   'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-   }
-}
+// const config = {
+//   headers: {
+//    'Access-Control-Allow-Origin' : '*',
+//    'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+//    }
+// }
 
 const headers ={
   'Access-Control-Allow-Origin' : '*',
