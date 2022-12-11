@@ -139,95 +139,19 @@ export const getRemoteItemById = async (itemId) => {
 };
 
 export const uploadImage = async (image) => {
-  // const credentials = JSON.parse(fs.readFileSync("credentials.json", "utf-8"));]
-  // const formData = new FormData();
-  // formData.append(image);
-  // const client = new imgur({ clientId: "42e16d63910a162" })
-  // const response = await client.upload({
-  //   image: image,
-  // })
-  // console.log(response);
-  // const reader = new FileReader();
+  const formData = new FormData();
+  formData.append("image", image);
 
-  // let result = "";
-  // reader.readAsDataURL(image);
-  // reader.onloadend = async function () {
-  //   // console.log(reader.result);
-  //   result = reader.result;
-  //   console.log(result)
-    const formData = new FormData();
-    formData.append("image", image);
-    for (var key of formData.entries()) {
-      console.log(key[0] + ', ' + key[1]);
-
-      const headers = new Headers();
-  headers.append("Authorization", "Client-ID 432ea0ec3154fb2");
+  const headers = new Headers();
+  headers.append("Authorization", "Client-ID 432ea0ec3154fb2");  //netlify
+  // headers.append("Authorization", "Client-ID a6f9000c00e37d0");
   const options = {
     method: "POST",
     headers: headers,
     body: formData,
     redirect: "follow",
   };
-        // const response = await fetch("https://api.imgur.com/3/image", options);
-  // console.log(response);
-  fetch("https://api.imgur.com/3/image", options).then(re=>re.json()).then(data=>console.log(data))
-  // }
-  // const headers = new Headers();
-  // headers.append("Authorization", "Client-ID 432ea0ec3154fb2");
-  // const options = {
-  //   method: "POST",
-  //   headers: headers,
-  //   body: formData,
-  //   redirect: "follow",
-  // };
-// console.log(options)
-  };
-//   const formData = new FormData();
-//   formData.append("image", result);
-//   const headers = new Headers();
-//   headers.append("Authorization", "Client-ID 432ea0ec3154fb2");
-//   const options = {
-//     method: "POST",
-//     headers: headers,
-//     body: formData,
-//     redirect: "follow",
-//   };
-// console.log(options)
-  // const response = await fetch("https://api.imgur.com/3/image", options);
-  // console.log(response);
-
-
-
-  // const headers = new Headers();
-  // headers.append("Authorization", "Client-ID 432ea0ec3154fb2");
-
-  // const formData = new FormData();
-  // formData.append("image", image);
-
-  // const options = {
-  //     method: "POST",
-  //     headers: headers,
-  //     body: formData,
-  //     redirect: "follow",
-  // };
-
-  //   const response = await fetch("https://api.imgur.com/3/image", options);
-  //   console.log(response);
-
-  // const formdata = new FormData();
-  // formdata.append("image", image);
-  // console.log(image);
-  // const config = {
-  //   headers: {
-  //     Authorization: "Client-ID 600d35afc7ec35e",
-  //   },
-  // };
-  // axios
-  //   .post("https://api.imgur.com/3/image", formdata, config)
-  //   .then((res) => {
-  //     console.log(res);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+  fetch("https://api.imgur.com/3/image", options)
+    .then((re) => re.json())
+    .then((data) => console.log(data));
 };
