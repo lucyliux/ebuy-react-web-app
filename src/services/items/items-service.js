@@ -168,8 +168,9 @@ export const uploadImage = async (image) => {
     body: formData,
     redirect: "follow",
   };
-        const response = await fetch("https://api.imgur.com/3/image", options);
-  console.log(response);
+        // const response = await fetch("https://api.imgur.com/3/image", options);
+  // console.log(response);
+  fetch("https://api.imgur.com/3/image", options).then(re=>re.json()).then(data=>console.log(data))
   // }
   // const headers = new Headers();
   // headers.append("Authorization", "Client-ID 432ea0ec3154fb2");
