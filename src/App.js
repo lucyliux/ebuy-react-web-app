@@ -13,7 +13,6 @@ import trendingItemsReducer from "./reducers/trending-items-reducer";
 import usersReducer from "./reducers/users-reducer";
 import itemsReducer from "./reducers/items-reducer";
 import CurrentUser from "./services/users/current-user";
-import ProtectedRoute from "./services/users/protected-route";
 import SearchResult from "./components/search-result.js";
 import ItemDetail from "./components/itemDetail";
 import reviewsReducer from "./reducers/reviews-reducer";

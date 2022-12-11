@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
 import Searchbar from "./searchbar";
 import ItemPreviewList from "../item-preview-list";
-import { useDispatch, useSelector } from "react-redux";
-import { findRecentListingsThunk } from "../../services/items/items-thunks";
+import { useSelector } from "react-redux";
 
 const HomeComponent = () => {
   const trendingItems = useSelector((state) => state.trendingItems);

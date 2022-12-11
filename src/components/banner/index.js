@@ -2,8 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-// import { getSessionAllThunk } from "../../services/sessions/sessions-thunks";
-import { logoutThunk, profileThunk } from "../../services/users/users-thunks";
+import { logoutThunk } from "../../services/users/users-thunks";
 import { findRecentLikesThunk, findRecentListingsThunk } from "../../services/items/items-thunks";
 import { findReviewsBySellerThunk } from "../../services/reviews/reviews-thunk";
 
@@ -21,14 +20,14 @@ const Banner = () => {
         </h1>
         {(currentUser === null || currentUser === undefined) && (
           <div className="row m-0 me-5 pt-3 float-right justify-content-end position-relative" style={{ bottom: "65px" }}>
-            <i onClick={onHomeClick} className="btn bi bi-house-fill m-0 p-0 position-relative me-3" style={{ color: "white", fontSize: "40px", width: "40px", height: "40px", bottom: "10px", borderColor:"transparent" }}></i>
+            <i onClick={onHomeClick} className="btn bi bi-house-fill m-0 p-0 position-relative me-3" style={{ color: "white", fontSize: "40px", width: "40px", height: "40px", bottom: "10px", borderColor: "transparent" }}></i>
             <LoginRegisterButton name="Login" path="login" />
             <LoginRegisterButton name="Register" path="register" />
           </div>
         )}
         {currentUser !== null && (
           <div className="row m-0 me-5 pt-3 float-right justify-content-end position-relative" style={{ bottom: "65px" }}>
-            <i onClick={onHomeClick} className="btn bi bi-house-fill m-0 p-0 position-relative me-3" style={{ color: "white", fontSize: "40px", width: "40px", height: "40px", bottom: "10px", borderColor:"transparent" }}></i>
+            <i onClick={onHomeClick} className="btn bi bi-house-fill m-0 p-0 position-relative me-3" style={{ color: "white", fontSize: "40px", width: "40px", height: "40px", bottom: "10px", borderColor: "transparent" }}></i>
             <Profile user={currentUser} />
             <LogoutButton />
           </div>
@@ -81,7 +80,7 @@ const Profile = ({ user }) => {
   };
   return (
     <>
-      <i onClick={onProfileClick} className="btn bi bi-person-circle m-0 p-0 position-relative me-3" style={{ color: "white", fontSize: "40px", width: "40px", height: "40px", bottom: "10px", borderColor:"transparent" }}></i>
+      <i onClick={onProfileClick} className="btn bi bi-person-circle m-0 p-0 position-relative me-3" style={{ color: "white", fontSize: "40px", width: "40px", height: "40px", bottom: "10px", borderColor: "transparent" }}></i>
     </>
   );
 };

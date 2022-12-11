@@ -1,12 +1,12 @@
-import {useDispatch, useSelector} from "react-redux";
-import React, {useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {useEffect} from "react";
 import {profileThunk} from "./users-thunks";
 
 const CurrentUser = ({children}) => {
-    const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(profileThunk())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return(children)
 }

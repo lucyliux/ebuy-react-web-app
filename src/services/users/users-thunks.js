@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import * as service from "./users-service";
-import { useNavigate } from "react-router-dom";
 
 export const signupThunk = createAsyncThunk("signup", async (user) => await service.signup(user));
 

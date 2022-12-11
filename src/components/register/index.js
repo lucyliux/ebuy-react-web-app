@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { profileThunk, signupThunk } from "../../services/users/users-thunks";
+import { useDispatch } from "react-redux";
+import {  signupThunk } from "../../services/users/users-thunks";
 import { useNavigate } from "react-router-dom";
-import { findRecentLikesThunk, findRecentListingsThunk } from "../../services/items/items-thunks";
 
 const RegisterComponent = () => {
   let [role, setRole] = useState("");
@@ -12,7 +11,6 @@ const RegisterComponent = () => {
   let [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state) => state.users);
   const registerClickHandler = () => {
     if (role === "") {
       alert("Please select a role.");

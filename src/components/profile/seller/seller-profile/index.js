@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux"
-import { useLocation } from "react-router";
 import SellerProfilePrivate from "./seller-profile-private";
 import SellerProfilePublic from "./seller-profile-public";
 

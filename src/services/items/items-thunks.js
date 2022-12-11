@@ -49,7 +49,6 @@ export const findAllLikesThunk = createAsyncThunk(
 );
 
 /////////////////////////////// eBay API /////////////////////////////////
-const EBAY_BROWSE_API = "https://api.ebay.com/buy/browse/v1/item_summary/search?q=drone&limit=3";
 export const findItemsByKeywordThunk = createAsyncThunk(
   "findRemoteItemsByKeyword",
   async (keyword) => {

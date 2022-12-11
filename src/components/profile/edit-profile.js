@@ -10,7 +10,7 @@ const EditProfileComponent = () => {
   const [phoneNumber, setPhoneNumber] = useState(currentUser.phoneNumber);
   const [password, setPassword] = useState(currentUser.password);
   const [address, setAddress] = useState(currentUser.address);
-  const [avatar, setAvatar] = useState(currentUser.avatar);
+  // const [avatar, setAvatar] = useState(currentUser.avatar);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onSave = () => {
@@ -20,7 +20,7 @@ const EditProfileComponent = () => {
       phoneNumber: phoneNumber,
       password: password,
       address: address,
-      avatar: avatar,
+      // avatar: avatar,
       role: currentUser.role,
       likes: currentUser.likes,
       listings: currentUser.listings,

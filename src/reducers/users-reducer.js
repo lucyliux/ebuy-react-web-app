@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { findUserByNameThunk, loginThunk, logoutThunk, profileThunk, signupThunk, updateThunk } from "../services/users/users-thunks";
+import { loginThunk, logoutThunk, profileThunk, signupThunk, updateThunk } from "../services/users/users-thunks";
 
 const usersSlice = createSlice({
   name: "users",

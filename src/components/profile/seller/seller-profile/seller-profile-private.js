@@ -1,10 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { findAllListingsThunk, findRecentListingsThunk } from "../../../../services/items/items-thunks";
+import { findAllListingsThunk } from "../../../../services/items/items-thunks";
 import ItemPreviewList from "../../../item-preview-list";
-import AllListings from "../../../all-listings";
 import ReviewComponent from "../reviews/review-component";
-import { profileThunk } from "../../../../services/users/users-thunks";
 
 const SellerProfilePrivate = ({ user }) => {
   return (
@@ -23,8 +21,8 @@ const SellerProfilePrivate = ({ user }) => {
                 <RoleTag role={user.role} />
               </div>
               <div className="col">
-            <EditProfileButton user={user} />
-          </div>
+                <EditProfileButton user={user} />
+              </div>
             </div>
             <UserInfo user={user} />
           </div>
