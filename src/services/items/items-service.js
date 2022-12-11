@@ -149,7 +149,7 @@ export const uploadImage = async (image) => {
   // console.log(response);
 
 const headers = new Headers();
-headers.append("Authorization", "Client-ID 42e16d63910a162");
+headers.append("Authorization", "Client-ID 432ea0ec3154fb2");
 
 const formData = new FormData();
 formData.append("image", image);
