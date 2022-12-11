@@ -15,6 +15,7 @@ const HomeComponent = () => {
         <br />
         <b className="wd-text-align-left">Trending Items</b>
         <ItemPreviewList items={trendingItems} renderHeart={currentUser !== null && currentUser.role === "BUYER"} />
+        <input id="input" type="file" className="col rounded" onChange={e => dispatch(uploadImageThunk(e.target.files[0]))} />
         {currentUser !== null && currentUser.role === "BUYER" && <RecentLikes />}
         {currentUser !== null && currentUser.role === "SELLER" && <RecentListings />}
       </div>
