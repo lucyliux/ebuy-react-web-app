@@ -1,6 +1,9 @@
 import React from "react";
 import ItemPreview from "../item-preview-list/item-preview"
 import {useSelector} from "react-redux";
+import { all } from "axios";
+import { useLocation } from "react-router";
+import ItemPreviewList from "../item-preview-list";
 
 const itemsExample = [
     {
@@ -14,30 +17,27 @@ const itemsExample = [
     }
 ]
 
-const AllListings = ({items = itemsExample, renderHeart = false, renderX = false}) => {
-    const {currentUser} = useSelector((state)=>state.users);
+const AllListings = () => {
+    // const { currentUser } = useSelector((state) => state.users);
+    const { allListings, allLikes } = useSelector((state) => state.items);
+    const { currentUser } = useSelector((state) => state.users);
+    const location = useLocation();
+    const profileUser = location.state.profileUser;
+    // const isBuyer = profileUser.role === "BUYER";
+    let allItems = [];
     let headerText = "";
-    if (currentUser.role === "SELLER") {
-        headerText = "All Listings";
-    } else {
+    if (profileUser.role === "BUYER") {
+        allItems = allLikes;
         headerText = "All Likes";
     }
-
+    else {
+        allItems = allListings;
+        headerText = "All Listings";
+    }
     return (
         <>
             <h4>{headerText}</h4>
-            <div className="row">
-                {items.map((item) => {
-                    let colDisplay = "col";
-                    return (
-                        <>
-                            <div className={colDisplay}><ItemPreview item={item} renderHeart={renderHeart}
-                                                                     renderX={renderX}/></div>
-                        </>
-                    )
-                })}
-            </div>
-
+            <ItemPreviewList items={allItems} />
         </>
     )
 }

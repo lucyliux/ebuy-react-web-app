@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { createItemThunk, findRecentListingsThunk } from "../../../services/items/items-thunks";
+import { createItemThunk, findRecentLikesThunk, findRecentListingsThunk } from "../../../services/items/items-thunks";
 import { updateThunk } from "../../../services/users/users-thunks";
 
 const CreateListingComponent = () => {
@@ -14,7 +14,7 @@ const CreateListingComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onCancel = () => {
-    navigate("/profile");
+    navigate("/profile", {state: {profileUser: currentUser}});
   }
   const createListingClickHandler = () => {
     if (itemName === "") {
@@ -32,7 +32,6 @@ const CreateListingComponent = () => {
     else {
       const newItem = {
         name: itemName,
-        date: new Date(),
         condition: condition,
         price: Number(price),
         image: image,
@@ -54,10 +53,8 @@ const CreateListingComponent = () => {
          };
         updatedSeller.listings = response.payload._id + "," + updatedSeller.listings;
         dispatch(updateThunk(updatedSeller)).then(() => {
-          // const listingIds = updatedSeller.listings.split(",").filter((str) => str !== "");
-          console.log(updatedSeller.listings);
-          dispatch(findRecentListingsThunk(updatedSeller.listings)).then(
-            navigate("/profile"));
+          dispatch(findRecentListingsThunk(updatedSeller.listings)) 
+          navigate("/profile", {state: {profileUser: updatedSeller}})
         });
         
       });
