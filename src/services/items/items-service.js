@@ -147,22 +147,72 @@ export const uploadImage = async (image) => {
   //   image: image,
   // })
   // console.log(response);
+  const reader = new FileReader();
 
-const headers = new Headers();
-headers.append("Authorization", "Client-ID 432ea0ec3154fb2");
+  let result = "";
+  reader.readAsDataURL(image);
+  reader.onloadend = async function () {
+    // console.log(reader.result);
+    result = reader.result;
+    // console.log(result)
+    let formData = new FormData();
+    formData.append("image", result);
+    for (var key of formData.entries()) {
+      console.log(key[0] + ', ' + key[1]);
 
-const formData = new FormData();
-formData.append("image", image);
-
-const options = {
+      const headers = new Headers();
+  headers.append("Authorization", "Client-ID 432ea0ec3154fb2");
+  const options = {
     method: "POST",
     headers: headers,
     body: formData,
     redirect: "follow",
-};
-
-  const response = await fetch("https://api.imgur.com/3/image", options);
+  };
+        const response = await fetch("https://api.imgur.com/3/image", options);
   console.log(response);
+  }
+  // const headers = new Headers();
+  // headers.append("Authorization", "Client-ID 432ea0ec3154fb2");
+  // const options = {
+  //   method: "POST",
+  //   headers: headers,
+  //   body: formData,
+  //   redirect: "follow",
+  // };
+// console.log(options)
+  };
+//   const formData = new FormData();
+//   formData.append("image", result);
+//   const headers = new Headers();
+//   headers.append("Authorization", "Client-ID 432ea0ec3154fb2");
+//   const options = {
+//     method: "POST",
+//     headers: headers,
+//     body: formData,
+//     redirect: "follow",
+//   };
+// console.log(options)
+  // const response = await fetch("https://api.imgur.com/3/image", options);
+  // console.log(response);
+
+
+
+  // const headers = new Headers();
+  // headers.append("Authorization", "Client-ID 432ea0ec3154fb2");
+
+  // const formData = new FormData();
+  // formData.append("image", image);
+
+  // const options = {
+  //     method: "POST",
+  //     headers: headers,
+  //     body: formData,
+  //     redirect: "follow",
+  // };
+
+  //   const response = await fetch("https://api.imgur.com/3/image", options);
+  //   console.log(response);
+
   // const formdata = new FormData();
   // formdata.append("image", image);
   // console.log(image);
