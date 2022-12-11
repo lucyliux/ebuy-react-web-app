@@ -2,6 +2,18 @@ import axios from 'axios';
 import { API_BASE } from "../api";
 const ITEMS_API = `${API_BASE}/items`;
 
+const config = {
+  headers: {
+   'Access-Control-Allow-Origin' : '*',
+   'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+   }
+}
+
+const headers ={
+  'Access-Control-Allow-Origin' : '*',
+  'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+  }
+
 const api = axios.create({
    withCredentials: true
 });
@@ -21,7 +33,7 @@ export const findRecentRemoteLikes = async (itemIds) => {
 }
 
 export const findRecentMongoLikes = async (itemIds) => {
-  const response = await api.post(`${ITEMS_API}/findRecentItems`, {itemIds: itemIds});
+  const response = await api.post(`${ITEMS_API}/findRecentItems`, {headers: headers, itemIds: itemIds});
   return response.data;
 }
 
