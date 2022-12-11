@@ -27,10 +27,10 @@ const EditProfileComponent = () => {
       reviews: currentUser.reviews,
     }
     dispatch(updateThunk(updatedUser))
-    navigate("/profile")
+    navigate("/profile", {state: {profileUser: updatedUser}})
   }
   const onCancel = () => {
-    navigate("/profile");
+    navigate("/profile", {state: {profileUser: currentUser}});
   }
   return (
     <>

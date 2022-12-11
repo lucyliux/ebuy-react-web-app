@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { findRemoteItemsByKeywordThunk } from "../../services/items/items-thunks";
+import { findItemsByKeywordThunk } from "../../services/items/items-thunks";
 
 const Searchbar = () => {
   const [keyword, setKeyword] = useState("");
@@ -12,7 +12,7 @@ const Searchbar = () => {
       alert("Please enter a keyword");
     }
     else {
-      dispatch(findRemoteItemsByKeywordThunk(keyword));
+      dispatch(findItemsByKeywordThunk(keyword));
       navigate("/search-result");
     }
   }

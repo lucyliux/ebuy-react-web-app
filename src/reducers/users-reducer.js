@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginThunk, logoutThunk, profileThunk, signupThunk, updateThunk } from "../services/users/users-thunks"
+import { findUserByNameThunk, loginThunk, logoutThunk, profileThunk, signupThunk, updateThunk } from "../services/users/users-thunks";
 
 const usersSlice = createSlice({
   name: "users",
@@ -7,46 +7,34 @@ const usersSlice = createSlice({
     allUsers: [],
     loading: false,
     currentUser: null,
-    publicProfile: null
+    // publicProfile: null,
   },
   extraReducers: {
-    [signupThunk.fulfilled]:
-      (state, action) => {
+    [signupThunk.fulfilled]: (state, action) => {
+      state.currentUser = action.payload;
+      state.allUsers.push(action.payload);
+    },
+    [loginThunk.fulfilled]: (state, action) => {
+      state.currentUser = action.payload;
+    },
+    [profileThunk.fulfilled]: (state, action) => {
+      state.currentUser = action.payload;
+    },
+    [logoutThunk.fulfilled]: (state, action) => {
+      state.currentUser = null;
+    },
+    [updateThunk.fulfilled]: (state, action) => {
+      const updated = action.payload;
+      if (updated.username === state.currentUser.username) {
         state.currentUser = action.payload;
-        console.log("payload")
-        console.log(state.currentUser)
-        console.log(action);
-        state.allUsers.push(action.payload);
-      },
-    [loginThunk.fulfilled]:
-      (state, action) => {
-        state.currentUser = action.payload;
-        // state.users.push(action.payload);
-        console.log(state.allUsers);
-        // console.log("payload")
-        console.log(action);
-        console.log(action.payload)
-      },
-    [profileThunk.fulfilled]:
-      (state, action) => {
-        state.currentUser = action.payload;
-        // console.log("payload")
-        // console.log(state.currentUser)
-      },
-    [logoutThunk.fulfilled]:
-      (state, action) => {
-        state.currentUser = null;
-        // state.currentUser = action.payload;
-        // console.log("payload")
-        // console.log(state.currentUser)
-      },
-    [updateThunk.fulfilled]:
-      (state, action) => {
-        state.currentUser = action.payload;
-        console.log("payload")
-        console.log(action.payload)
-      },
-  }
+      }
+    },
+    // [findUserByNameThunk.fulfilled]: (state, action) => {
+    //   console.log("find user")
+    //   console.log(action.payload);
+    //   state.publicProfile = action.payload;
+    // },
+  },
 });
 
 export default usersSlice.reducer;

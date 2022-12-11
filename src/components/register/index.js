@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {profileThunk, signupThunk} from "../../services/users/users-thunks";
 import {useNavigate} from "react-router-dom";
-import { findRecentListingsThunk } from "../../services/items/items-thunks";
+import { findRecentLikesThunk, findRecentListingsThunk } from "../../services/items/items-thunks";
 
 const RegisterComponent = () => {
   let [role, setRole] = useState("");
@@ -48,7 +48,8 @@ const RegisterComponent = () => {
         // })
         if (currentUser) {
           // dispatch(profileThunk());
-          dispatch(findRecentListingsThunk(currentUser.listings))
+          // dispatch(findRecentListingsThunk(currentUser.listings));
+          // dispatch(findRecentLikesThunk(currentUser.likes));
             alert("Success!");
             navigate('/');
         }
