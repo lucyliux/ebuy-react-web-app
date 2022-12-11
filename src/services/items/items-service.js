@@ -1,6 +1,6 @@
 import axios from 'axios';
-const BASE_URL = "http://localhost:4000/api";
-const ITEMS_API = `${BASE_URL}/items`;
+import { API_BASE } from "../api";
+const ITEMS_API = `${API_BASE}/items`;
 
 const api = axios.create({
    withCredentials: true
