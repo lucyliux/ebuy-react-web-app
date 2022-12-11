@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { updateThunk } from "../../services/users/users-thunks";
+// import { updateThunk } from "../../services/users/users-thunks";
 import { uploadImageThunk } from "../../services/items/items-thunks";
 
 const EditProfileComponent = () => {

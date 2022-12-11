@@ -1,8 +1,8 @@
 import axios from "axios";
 import { API_BASE } from "../api";
-import * as fs from "fs";
-import { createReadStream } from "fs";
-import * as imgur from "imgur";
+// import * as fs from "fs";
+// import { createReadStream } from "fs";
+// import * as imgur from "imgur";
 const ITEMS_API = `${API_BASE}/items`;
 
 const api = axios.create({
