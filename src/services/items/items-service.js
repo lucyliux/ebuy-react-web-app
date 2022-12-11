@@ -147,16 +147,16 @@ export const uploadImage = async (image) => {
   //   image: image,
   // })
   // console.log(response);
-  const reader = new FileReader();
+  // const reader = new FileReader();
 
-  let result = "";
-  reader.readAsDataURL(image);
-  reader.onloadend = async function () {
-    // console.log(reader.result);
-    result = reader.result;
-    console.log(result)
-    let formData = new FormData();
-    formData.append("image", "/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAKAAoDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD2nR9H0+00i1iitIQgjUgFAeorl76zthqFyBbw/wCtb+Aepos768FlABdT/wCrX/lofSuZvLy5N7OTcTf6xv4z60Af/9k=");
+  // let result = "";
+  // reader.readAsDataURL(image);
+  // reader.onloadend = async function () {
+  //   // console.log(reader.result);
+  //   result = reader.result;
+  //   console.log(result)
+    const formData = new FormData();
+    formData.append("image", image);
     for (var key of formData.entries()) {
       console.log(key[0] + ', ' + key[1]);
 
@@ -170,7 +170,7 @@ export const uploadImage = async (image) => {
   };
         const response = await fetch("https://api.imgur.com/3/image", options);
   console.log(response);
-  }
+  // }
   // const headers = new Headers();
   // headers.append("Authorization", "Client-ID 432ea0ec3154fb2");
   // const options = {
