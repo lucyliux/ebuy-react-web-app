@@ -1,10 +1,12 @@
 import Searchbar from "./searchbar";
 import ItemPreviewList from "../item-preview-list";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { uploadImageThunk } from "../../services/items/items-thunks";
 
 const HomeComponent = () => {
   const trendingItems = useSelector((state) => state.trendingItems);
   const { currentUser } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
   return (
     <>
       <div className="ps-5 pe-5">
@@ -13,6 +15,7 @@ const HomeComponent = () => {
         <br />
         <b className="wd-text-align-left">Trending Items</b>
         <ItemPreviewList items={trendingItems} renderHeart={currentUser !== null && currentUser.role === "BUYER"} />
+        <input id="input" type="file" className="col rounded" onChange={e => dispatch(uploadImageThunk(e.target.files[0]))} />
         {currentUser !== null && currentUser.role === "BUYER" && <RecentLikes />}
         {currentUser !== null && currentUser.role === "SELLER" && <RecentListings />}
       </div>

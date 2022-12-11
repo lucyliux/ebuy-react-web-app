@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import { findUserByNameThunk } from "../../../../services/users/users-thunks";
 
 const ReviewComponent = ({ review }) => {

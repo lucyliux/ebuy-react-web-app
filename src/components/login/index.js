@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "../../services/users/users-thunks";
 import { findRecentLikesThunk, findRecentListingsThunk } from "../../services/items/items-thunks";
+import { findReviewsBySellerThunk } from "../../services/reviews/reviews-thunk";
 // import { getSessionAllThunk } from "../../services/sessions/sessions-thunks";
 
 const LoginComponent = () => {
@@ -17,22 +18,15 @@ const LoginComponent = () => {
       username: username,
       password: password,
     };
-    dispatch(loginThunk(credentials));
-    // .catch((err) => {
-    // console.log(err.response.data);
-    // console.log(err.response.status);
-    // alert("username already exists");
-    // })
-    // .then(() => {
-    //   dispatch(getSessionAllThunk());
-    //   alert("Success!");
-    //   navigate('/profile');
-    // });
+    dispatch(loginThunk(credentials)).then(() => {
+      if (currentUser) {
+        dispatch(findRecentListingsThunk(currentUser.listings))
+        dispatch(findRecentLikesThunk(currentUser.likes));
+        dispatch(findReviewsBySellerThunk(currentUser.username));
+        return navigate("/profile", { state: { profileUser: currentUser } });
+      }
+    })
   };
-  if (currentUser) {
-    currentUser.role === "SELLER" ? dispatch(findRecentListingsThunk(currentUser.listings)) : dispatch(findRecentLikesThunk(currentUser.likes));
-    return navigate("/profile", { state: { profileUser: currentUser } });
-  }
   return (
     <>
       <div>

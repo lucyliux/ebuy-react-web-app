@@ -17,7 +17,7 @@ const SellerProfilePrivate = ({ user }) => {
               <span className="col" style={{ fontSize: "50px" }}>
                 {user.username}
               </span>
-              <div className="col-6">
+              <div className="col">
                 <RoleTag role={user.role} />
               </div>
               <div className="col">

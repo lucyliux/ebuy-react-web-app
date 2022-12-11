@@ -43,7 +43,7 @@ function App() {
                 path="/profile*"
                 element={
                   // <ProtectedRoute>
-                    <Profile />
+                  <Profile />
                   // </ProtectedRoute>
                 }
               />
@@ -54,5 +54,6 @@ function App() {
     </Provider>
   );
 }
+
 
 export default App;
