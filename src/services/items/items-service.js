@@ -40,7 +40,7 @@ export const findRecentMongoLikes = async (itemIds) => {
 }
 
 export const findRecentListings = async (itemIds) => {
-  const response = await api.post(`${ITEMS_API}/findRecentItems`, {itemIds: itemIds});
+  const response = await api.post(`${ITEMS_API}/findRecentItems`, {itemIds: itemIds},config);
   return response.data;
 }
 
