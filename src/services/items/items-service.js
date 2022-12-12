@@ -143,8 +143,8 @@ export const uploadImage = async (image) => {
   formData.append("image", image);
 
   const headers = new Headers();
-  // headers.append("Authorization", "Client-ID 432ea0ec3154fb2");  //netlify
-  headers.append("Authorization", "Client-ID 4a58a5af5351f52");
+  headers.append("Authorization", "Client-ID 432ea0ec3154fb2");  //netlify
+  // headers.append("Authorization", "Client-ID 4a58a5af5351f52");
   const options = {
     method: "POST",
     headers: headers,
