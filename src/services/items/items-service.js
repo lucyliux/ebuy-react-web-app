@@ -150,7 +150,7 @@ export const uploadImage = async (image) => {
     body: formData,
     redirect: "follow",
   };
-  fetch("https://api.imgur.com/3/image", options)
+  return fetch("https://api.imgur.com/3/image", options)
     .then(data => data.json()).then(data => console.log(data))
     // .then(data => data.data.link);
 };
