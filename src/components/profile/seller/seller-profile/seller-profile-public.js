@@ -56,7 +56,7 @@ const UserInfo = ({ user }) => {
 };
 
 const Listings = ({ user }) => {
-  const { recentListings } = useSelector((state) => state.items);
+  const { recentListings, loading } = useSelector((state) => state.items);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleSeeAllClick = () => {
@@ -72,7 +72,8 @@ const Listings = ({ user }) => {
             See all
           </b>
         </div>
-        <ItemPreviewList items={recentListings} />
+        {loading&&<span>Loading...</span>}
+        {!loading && <ItemPreviewList items={recentListings} />}
       </div>
     </>
   );
@@ -98,13 +99,14 @@ const Reviews = ({ user }) => {
         </button>
       </div>
       {allReviews.length === 0 && <span>{user.username} doesn't have any review.</span>}
-      {allReviews.length > 0 && previews.splice(0, 2).map((review) => {
-        return (
-          <>
-            <ReviewComponent review={review} />
-          </>
-        );
-      })}
+      {allReviews.length > 0 &&
+        previews.splice(0, 2).map((review) => {
+          return (
+            <>
+              <ReviewComponent review={review} />
+            </>
+          );
+        })}
       <br />
       <b onClick={onAllReviewsClick}>See all reviews</b>
     </>

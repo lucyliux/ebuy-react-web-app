@@ -74,7 +74,7 @@ const UserInfo = ({ user }) => {
 };
 
 const Listings = ({ user }) => {
-  const { recentListings } = useSelector((state) => state.items);
+  const { recentListings, loading } = useSelector((state) => state.items);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleNewListingClick = () => {
@@ -96,7 +96,8 @@ const Listings = ({ user }) => {
             See all
           </b>
         </div>
-        <ItemPreviewList items={recentListings} />
+        {loading&& <span>Loading...</span>}
+        {!loading && <ItemPreviewList items={recentListings} />}
       </div>
     </>
   );

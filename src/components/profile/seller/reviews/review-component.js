@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { findRecentLikesThunk } from "../../../../services/items/items-thunks";
 import { findUserByNameThunk } from "../../../../services/users/users-thunks";
 
 const ReviewComponent = ({ review }) => {
@@ -11,11 +12,11 @@ const ReviewComponent = ({ review }) => {
   const dispatch = useDispatch();
   const onClickReviewer = () => {
     dispatch(findUserByNameThunk(review.buyerName)).then((response) => {
-      console.log(response.payload)
-      navigate(`/profile/${review.buyerName}`, { state: { profileUser: response.payload } })
-    }
-    )
-  }
+      const profileUser = response.payload;
+      dispatch(findRecentLikesThunk(profileUser.likes));
+      navigate(`/profile/${review.buyerName}`, { state: { profileUser: profileUser } });
+    });
+  };
   return (
     <>
       <div className="ps-3 pe-3 mb-2">
@@ -25,14 +26,14 @@ const ReviewComponent = ({ review }) => {
           </div>
           <div className="col-11">
             <div className="row">
-              <span class="col btn btn-sm" style={{ fontSize: "25px", color: "white", fontWeight:"bold", textAlign:"start", borderColor: "transparent" }} onClick={onClickReviewer}>
+              <span class="col btn btn-sm" style={{ fontSize: "25px", color: "white", fontWeight: "bold", textAlign: "start", borderColor: "transparent" }} onClick={onClickReviewer}>
                 {review.buyerName}
               </span>
               <span class="col" style={{ textAlign: "end" }}>
                 {day + "/" + month + "/" + year}
               </span>
             </div>
-            <span style={{ wordWrap: "break-word", }}>{review.content}</span>
+            <span style={{ wordWrap: "break-word" }}>{review.content}</span>
           </div>
         </div>
       </div>

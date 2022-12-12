@@ -68,13 +68,13 @@ const UserInfo = ({ user }) => {
 const LikedItems = ({ user }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { recentLikes } = useSelector((state) => state.items);
+  const { recentLikes, loading } = useSelector((state) => state.items);
   const handleSeeAllClick = () => {
-    console.log(user)
+    console.log(user);
     dispatch(findAllLikesThunk(user.likes));
     navigate("/profile/buyer/all-likes", { state: { profileUser: user } });
   };
-    console.log(recentLikes)
+  console.log(recentLikes);
   return (
     <>
       <div>
@@ -84,8 +84,9 @@ const LikedItems = ({ user }) => {
             See all
           </b>
         </div>
-        {recentLikes.length===0&& <span>You don't have any liked items</span>}
-        <ItemPreviewList items={recentLikes} />
+        {loading && <span>Loading...</span>}
+        {recentLikes.length === 0 && !loading && <span>You don't have any liked items</span>}
+        {!loading && <ItemPreviewList items={recentLikes} />}
       </div>
     </>
   );
