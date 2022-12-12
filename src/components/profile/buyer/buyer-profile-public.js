@@ -37,7 +37,7 @@ const LikedItems = ({user}) => {
   const { recentLikes } = useSelector((state) => state.items);
   const handleSeeAllClick = () => {
     dispatch(findAllLikesThunk(user.likes));
-    navigate("/profile/buyer/all-likes")
+    navigate("/profile/buyer/all-likes", { state: { profileUser: user } })
   }
   return (
       <>
