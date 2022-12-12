@@ -151,6 +151,6 @@ export const uploadImage = async (image) => {
     redirect: "follow",
   };
   fetch("https://api.imgur.com/3/image", options)
-    .then(data => data.json())
-    .then(data => data.data.link);
+    .then(data => console.log(data.json().data.link))
+    // .then(data => data.data.link);
 };

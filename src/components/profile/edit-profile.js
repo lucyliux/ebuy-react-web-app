@@ -15,7 +15,8 @@ const EditProfileComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onSave = () => {
-    dispatch(uploadImageThunk(avatar)).then((link) => {
+    dispatch(uploadImageThunk(avatar)).then((response) => {
+      const link = response;
       console.log(typeof (link))
       console.log(link)
       const updatedUser = {
