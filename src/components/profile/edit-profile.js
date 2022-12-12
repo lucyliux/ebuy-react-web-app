@@ -16,7 +16,8 @@ const EditProfileComponent = () => {
   const dispatch = useDispatch();
   const onSave = () => {
     dispatch(uploadImageThunk(avatar)).then((link) => {
-      
+      console.log(typeof (link))
+      console.log(link)
       const updatedUser = {
         username: currentUser.username,
         email: email,
@@ -29,6 +30,7 @@ const EditProfileComponent = () => {
         listings: currentUser.listings,
         reviews: currentUser.reviews,
       };
+      console.log(updatedUser)
       dispatch(updateThunk(updatedUser));
       navigate("/profile", { state: { profileUser: updatedUser } }
       );
