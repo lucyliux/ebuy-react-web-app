@@ -31,9 +31,9 @@ const EditProfileComponent = () => {
         reviews: currentUser.reviews,
       };
       console.log(updatedUser)
-      dispatch(updateThunk(updatedUser));
-      navigate("/profile", { state: { profileUser: updatedUser } }
-      );
+      // dispatch(updateThunk(updatedUser));
+      // navigate("/profile", { state: { profileUser: updatedUser } }
+      // );
     });
   }
   const onCancel = () => {
