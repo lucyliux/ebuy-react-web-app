@@ -14,7 +14,7 @@ const HomeComponent = () => {
         <b style={{ fontSize: "30px" }}>Hi, {currentUser !== null && currentUser!==""? currentUser.username : "please sign in or create an account"}!</b>
         <br />
         <br />
-        <b className="wd-text-align-left">What's new</b>
+        <h5 className="wd-text-align-left" style={{fontWeight:"bold"}}>What's new</h5>
         <ItemPreviewList items={newItems.length===0 ? newItemsExample : newItems} />
         {currentUser !== null && currentUser!=="" && currentUser.role === "BUYER" && <RecentLikes />}
         {currentUser !== null && currentUser!==""&& currentUser.role === "SELLER" && <RecentListings />}
@@ -28,7 +28,7 @@ const RecentLikes = () => {
   return (
     <>
       <div>
-        <b className="wd-text-align-left">Your recent likes</b>
+        <h5 className="wd-text-align-left" style={{fontWeight:"bold"}}>Your recent likes</h5>
         <br />
         {recentLikes.length === 0 && <span>You don't have any liked items. Explore eBuy using the search bar above!</span>}
         <ItemPreviewList items={recentLikes} renderHeart={true} />
@@ -42,8 +42,7 @@ const RecentListings = () => {
   return (
     <>
       <div>
-        <b className="wd-text-align-left">Your recent listings</b>
-        <br />
+        <h5 className="wd-text-align-left" style={{fontWeight:"bold"}}>Your recent listings</h5>
         {recentListings.length > 0 && <ItemPreviewList items={recentListings} renderHeart={false} />}
         {recentListings.length === 0 && <span>Post your first listing in profile page!</span>}
       </div>
