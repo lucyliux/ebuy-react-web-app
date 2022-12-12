@@ -1,5 +1,4 @@
 import { Routes, Route, useLocation } from "react-router";
-import BuyerProfile from "./buyer/buyer-profile-private";
 import SellerProfile from "./seller/seller-profile";
 import EditProfileComponent from "./edit-profile";
 import { useDispatch } from "react-redux";
@@ -9,6 +8,7 @@ import AddReview from "./seller/reviews/add-review";
 import AllReviews from "./seller/reviews/all-reviews";
 import { findUserByNameThunk } from "../../services/users/users-thunks";
 import ProtectedRoute from "../../services/users/protected-route";
+import BuyerProfile from "./buyer";
 
 const Profile = () => {
   const location = useLocation();
@@ -22,7 +22,7 @@ const Profile = () => {
     <div>
       <Routes>
         
-        {/* <Route path="/:username" element={<SellerProfilePublic user={profileUser} />} /> */}
+        {/* <Route path="/:username" element={profileUser.role<SellerProfilePublic user={profileUser} />} /> */}
         <Route path="/edit-profile" element={<EditProfileComponent />} />
         <Route path="/seller/create-listing" element={<CreateListingComponent />} />
         <Route path="/seller/all-listings" element={<AllListings />} />

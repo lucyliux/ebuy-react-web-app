@@ -10,8 +10,10 @@ const ReviewComponent = ({ review }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onClickReviewer = () => {
-    dispatch(findUserByNameThunk(review.buyerName)).then((response)=>
-    navigate(`/profile/${review.buyerName}`, { state: { profileUser: response.payload } })
+    dispatch(findUserByNameThunk(review.buyerName)).then((response) => {
+      console.log(response.payload)
+      navigate(`/profile/${review.buyerName}`, { state: { profileUser: response.payload } })
+    }
     )
   }
   return (

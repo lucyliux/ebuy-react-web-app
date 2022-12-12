@@ -26,8 +26,8 @@ const CreateListingComponent = () => {
     } else if (image === null) {
       alert("Please upload an image.");
     } else {
-      dispatch(uploadImageThunk(image)).then((response) => {
-        const link = response.payload;
+      dispatch(uploadImageThunk(image)).then((imgResponse) => {
+        const link = imgResponse.payload;
         const newItem = {
           name: itemName,
           condition: condition,

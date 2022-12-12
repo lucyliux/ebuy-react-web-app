@@ -6,8 +6,8 @@ const BuyerProfile = ({ user }) => {
   const currentUser = useSelector((state) => state.users);
   return (
     <>
-      {user.name === currentUser.name && <BuyerProfilePrivate user={ user } />}
-      {user.name !== currentUser.name && <BuyerProfilePublic user={ user } />}
+      {user.username === currentUser.username && <BuyerProfilePrivate user={ user } />}
+      {user.username !== currentUser.username && <BuyerProfilePublic user={ user } />}
     </>
   )
 }

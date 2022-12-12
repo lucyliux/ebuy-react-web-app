@@ -20,7 +20,6 @@ const Searchbar = () => {
     <>
       <div>
         <input
-          type="search"
           placeholder="Search eBuy"
           className="form-control rounded-pill ps-5"
           style={{ width: "100%", backgroundColor: "#1E1E1E", color: "#FFFFFF" }}

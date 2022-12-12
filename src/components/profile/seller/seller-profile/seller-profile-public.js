@@ -4,7 +4,7 @@ import { findAllListingsThunk } from "../../../../services/items/items-thunks";
 import ItemPreviewList from "../../../item-preview-list";
 import ReviewComponent from "../reviews/review-component";
 
-const SellerProfilePrivate = ({ user }) => {
+const SellerProfilePublic = ({ user }) => {
   return (
     <>
       <div className="ps-5 pe-5">
@@ -50,7 +50,6 @@ const UserInfo = ({ user }) => {
       <div className="mt-3">
         <h4>Email: {user.email}</h4>
         <h4>Cell: {user.phoneNumber}</h4>
-        <h4>Address: {user.address}</h4>
       </div>
     </>
   );
@@ -98,7 +97,8 @@ const Reviews = ({ user }) => {
           + Add a review
         </button>
       </div>
-      {previews.splice(0, 2).map((review) => {
+      {allReviews.length === 0 && <span>{user.username} doesn't have any review.</span>}
+      {allReviews.length > 0 && previews.splice(0, 2).map((review) => {
         return (
           <>
             <ReviewComponent review={review} />
@@ -111,4 +111,4 @@ const Reviews = ({ user }) => {
   );
 };
 
-export default SellerProfilePrivate;
+export default SellerProfilePublic;

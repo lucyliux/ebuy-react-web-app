@@ -112,14 +112,16 @@ const Reviews = ({ user }) => {
   };
   return (
     <>
-        <h3 className="mt-4">Reviews</h3>
-      {previews.splice(0, 2).map((review) => {
-        return (
-          <>
-            <ReviewComponent review={review} />
-          </>
-        );
-      })}
+      <h3 className="mt-4">Reviews</h3>
+      {allReviews.length === 0 && <span>You don't have any review.</span>}
+      {allReviews.length > 0 &&
+        previews.splice(0, 2).map((review) => {
+          return (
+            <>
+              <ReviewComponent review={review} />
+            </>
+          );
+        })}
       <br />
       <b onClick={onAllReviewsClick}>See all reviews</b>
     </>
