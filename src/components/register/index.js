@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {  signupThunk } from "../../services/users/users-thunks";
 import { useNavigate } from "react-router-dom";
+import { getRecentRemoteItemsThunk } from "../../services/items/items-thunks";
 
 const RegisterComponent = () => {
   let [role, setRole] = useState("");
@@ -35,6 +36,7 @@ const RegisterComponent = () => {
       };
       dispatch(signupThunk(newUser)).then((response) => {
         if (response.payload !== undefined) {
+          dispatch(getRecentRemoteItemsThunk());
           alert("Success!");
           navigate("/");
         }

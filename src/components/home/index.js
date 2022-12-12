@@ -3,7 +3,7 @@ import ItemPreviewList from "../item-preview-list";
 import { useSelector } from "react-redux";
 
 const HomeComponent = () => {
-  const trendingItems = useSelector((state) => state.trendingItems);
+  const {newItems} = useSelector((state) => state.items);
   const { currentUser } = useSelector((state) => state.users);
   return (
     <>
@@ -11,8 +11,8 @@ const HomeComponent = () => {
         <Searchbar />
         <b style={{ fontSize: "30px" }}>Hi {currentUser !== null ? currentUser.username : ""}!</b>
         <br />
-        <b className="wd-text-align-left">Trending Items</b>
-        <ItemPreviewList items={trendingItems} renderHeart={currentUser !== null && currentUser.role === "BUYER"} />
+        <b className="wd-text-align-left">What's new</b>
+        <ItemPreviewList items={newItems} renderHeart={currentUser !== null && currentUser.role === "BUYER"} />
         {currentUser !== null && currentUser.role === "BUYER" && <RecentLikes />}
         {currentUser !== null && currentUser.role === "SELLER" && <RecentListings />}
       </div>

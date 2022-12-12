@@ -109,6 +109,59 @@ export const findRemoteItemsByKeyword = async (keyword) => {
   return items;
 };
 
+export const getRecentRemoteItems = async () => {
+  console.log("haha");
+  const options = {
+    method: 'GET',
+    url: 'https://unofficial-shein.p.rapidapi.com/products/list',
+    params: {
+      cat_id: '1980',
+      adp: '10170797',
+      language: 'en',
+      country: 'US',
+      currency: 'USD',
+      sort: '9',
+      limit: '4',
+      page: '1'
+    },
+    headers: {
+      'X-RapidAPI-Key': 'b93a0037cbmsh6334c9022053620p1d848cjsndc98ae9825cf',
+      'X-RapidAPI-Host': 'unofficial-shein.p.rapidapi.com'
+    }
+  };
+  
+  const response = await axios.request(options).catch((err) => {
+    console.log(err);
+    return {};
+  });
+  console.log(response)
+
+  const items = response.data.info.products;
+  const result = [];
+  console.log(items)
+  if (items) {
+    console.log("hoho")
+    items.forEach(item => {
+      const ourItem = {
+        _id: item.goods_id,
+        name: item.goods_name,
+        condition: "NEW",
+        price: Number(item.salePrice.amount),
+        image: item.goods_img,
+        description: item.goods_name,
+        sellerName: "SHEIN",
+      };
+      console.log(item);
+      result.push(ourItem);
+      console.log(result);
+    });
+    console.log(result);
+    return result;
+  } else {
+    return {};
+  }
+}
+
 export const getRemoteItemById = async (itemId) => {
   const options = {
     method: "GET",

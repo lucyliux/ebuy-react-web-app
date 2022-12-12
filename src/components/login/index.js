@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginThunk } from "../../services/users/users-thunks";
-import { findRecentLikesThunk, findRecentListingsThunk } from "../../services/items/items-thunks";
+import { findRecentLikesThunk, findRecentListingsThunk, getRecentRemoteItemsThunk } from "../../services/items/items-thunks";
 import { findReviewsBySellerThunk } from "../../services/reviews/reviews-thunk";
 
 const LoginComponent = () => {
@@ -20,6 +20,7 @@ const LoginComponent = () => {
       const user = response.payload;
       if (user !== undefined) {
         alert("Success!");
+        dispatch(getRecentRemoteItemsThunk());
         dispatch(findRecentListingsThunk(user.listings));
         dispatch(findRecentLikesThunk(user.likes));
         dispatch(findReviewsBySellerThunk(user.username));

@@ -7,31 +7,20 @@ export const findRecentLikesThunk = createAsyncThunk("findRecentLikes", async (i
   let recentLikes = itemIds;
   let remoteLikes = await service.findRecentRemoteLikes(recentLikes);
   remoteLikes = remoteLikes.filter((like) => like.name !== undefined);
-  console.log(recentLikes);
   remoteLikes.forEach((item) => {
     recentLikes = recentLikes.replace(item._id + ",", "");
   });
-  console.log(recentLikes);
-  console.log(remoteLikes);
   const mongoLikes = await service.findRecentMongoLikes(recentLikes);
-  console.log(mongoLikes);
-  console.log(remoteLikes.length === 0);
-  console.log(Object.keys(mongoLikes).length === 0);
   if (remoteLikes === null || remoteLikes === "" || remoteLikes[0].name === undefined || remoteLikes.length === 0) {
     if (mongoLikes === null || Object.keys(mongoLikes).length === 0 || mongoLikes[0].name === undefined) {
-      console.log("null");
       return null;
     } else {
-      console.log("mongo");
       return mongoLikes;
     }
   } else {
     if (mongoLikes === null || Object.keys(mongoLikes).length === 0 || mongoLikes[0].name === undefined) {
-      console.log("remote");
       return remoteLikes;
     } else {
-      console.log(remoteLikes.concat(mongoLikes));
-
       return remoteLikes.concat(mongoLikes);
     }
   }
@@ -69,3 +58,5 @@ export const findItemsByKeywordThunk = createAsyncThunk("findRemoteItemsByKeywor
 });
 
 export const uploadImageThunk = createAsyncThunk("uploadImage", async (image) => await service.uploadImage(image));
+
+export const getRecentRemoteItemsThunk = createAsyncThunk("getRecentRemoteItems", async () => await service.getRecentRemoteItems());

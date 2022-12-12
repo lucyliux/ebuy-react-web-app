@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { findRecentListingsThunk, findRecentLikesThunk, findItemsByKeywordThunk, findAllListingsThunk, findAllLikesThunk } from "../services/items/items-thunks";
+import { findRecentListingsThunk, findRecentLikesThunk, findItemsByKeywordThunk, findAllListingsThunk, findAllLikesThunk, getRecentRemoteItemsThunk } from "../services/items/items-thunks";
 
 const itemsSlice = createSlice({
   name: "items",
@@ -44,6 +44,10 @@ const itemsSlice = createSlice({
     [findItemsByKeywordThunk.fulfilled]: (state, action) => {
       state.searchResult = action.payload;
     },
+    [getRecentRemoteItemsThunk.fulfilled]: (state, action) => {
+      state.newItems = action.payload;
+      console.log('ayay')
+    }
   },
 });
 
