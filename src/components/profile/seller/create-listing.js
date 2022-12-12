@@ -10,7 +10,7 @@ const CreateListingComponent = () => {
   const [price, SetPrice] = useState(-1);
   const [condition, setCondition] = useState("NEW");
   const [description, setDescription] = useState("");
-  // const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onCancel = () => {
@@ -19,21 +19,21 @@ const CreateListingComponent = () => {
   const createListingClickHandler = () => {
     if (itemName === "") {
       alert("Please enter an item name.");
-    } else if (Number(price) === null || price < 0) {
+    } else if (isNaN(Number(price)) || price < 0) {
       alert("Please enter a valid price.");
     } else if (description === "") {
       alert("Please enter an item description.");
     }
-    // else if (image === "") {
-    //   alert("Please upload an image.");
-    // }
+    else if (image === null) {
+      alert("Please upload an image.");
+    }
     else {
       const newItem = {
         name: itemName,
         condition: condition,
         price: Number(price),
         date: new Date(),
-        // image: image,
+        image: image,
         description: description,
         sellerName: currentUser.username,
       };
@@ -75,12 +75,14 @@ const CreateListingComponent = () => {
         <textarea selected style={{ width: "100%" }} className="rounded ps-2 wd-white-on-bg-color-dark-gray" placeholder="Description" onChange={(event) => setDescription(event.target.value)} />
         <br />
         <div style={{ color: "#C8C8C8" }} className="mb-1 mt-1">
-          Upload a picture of this item
+          Upload an image of this item
         </div>
-        <div className="row m-0 mb-3">
+        <input id="input" type="file" className="m-0 mb-3" onChange={(e) => setImage(e.target.files[0])} />
+
+        {/* <div className="row m-0 mb-3">
           <button className="col-4 rounded">Choose File</button>
           <span className="col">No file chosen</span>
-        </div>
+        </div> */}
         <div className="row m-0">
           <button className="col btn btn-primary rounded-pill me-1" style={{ backgroundColor: "#105cd4", borderColor: "transparent" }} onClick={createListingClickHandler}>
             <b>Create listing</b>

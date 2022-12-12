@@ -14,10 +14,9 @@ const itemsExample = [
 const ItemPreviewList = ({ items = itemsExample, renderHeart = false}) => {
   return (
     <>
-      <div className="row">
+      <div className="row position-relative" style={{marginBottom: "-30px"}}>
         {items.map((item) => {
-          let colDisplay = "col";
-
+          const colDisplay = "col-12 col-sm-6 col-lg-4 col-xl-3";
           return (
             <>
               <div className={colDisplay}><ItemPreview item={item} renderHeart={renderHeart} /></div>

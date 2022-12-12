@@ -12,6 +12,7 @@ import ProtectedRoute from "../../services/users/protected-route";
 
 const Profile = () => {
   const location = useLocation();
+  console.log(location.state)
   console.log(location.state.profileUser);
   const profileUser = location.state.profileUser;
   const dispatch = useDispatch();

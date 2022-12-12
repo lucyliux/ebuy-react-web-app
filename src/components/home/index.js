@@ -1,20 +1,23 @@
 import Searchbar from "./searchbar";
 import ItemPreviewList from "../item-preview-list";
 import { useSelector } from "react-redux";
+import { newItemsExample } from "../../services/items/items";
 
 const HomeComponent = () => {
-  const {newItems} = useSelector((state) => state.items);
+  const { newItems } = useSelector((state) => state.items);
   const { currentUser } = useSelector((state) => state.users);
+  console.log(currentUser)
   return (
     <>
       <div className="ps-5 pe-5">
         <Searchbar />
-        <b style={{ fontSize: "30px" }}>Hi {currentUser !== null ? currentUser.username : ""}!</b>
+        <b style={{ fontSize: "30px" }}>Hi, {currentUser !== null && currentUser!==""? currentUser.username : "please sign in or create an account"}!</b>
+        <br />
         <br />
         <b className="wd-text-align-left">What's new</b>
-        <ItemPreviewList items={newItems} renderHeart={currentUser !== null && currentUser.role === "BUYER"} />
-        {currentUser !== null && currentUser.role === "BUYER" && <RecentLikes />}
-        {currentUser !== null && currentUser.role === "SELLER" && <RecentListings />}
+        <ItemPreviewList items={newItems.length===0 ? newItemsExample : newItems} />
+        {currentUser !== null && currentUser!=="" && currentUser.role === "BUYER" && <RecentLikes />}
+        {currentUser !== null && currentUser!==""&& currentUser.role === "SELLER" && <RecentListings />}
       </div>
     </>
   );

@@ -8,7 +8,7 @@ const SellerProfilePrivate = ({ user }) => {
   return (
     <>
       <div className="ps-5 pe-5">
-        <div className="row">
+        <div className="row align-items-start">
           <div className="col">
             <div class="row">
               <div className="col-1 wd-fill rounded-circle position-relative" style={{ width: "100px", height: "100px", backgroundColor: "gray" }}>
@@ -78,7 +78,7 @@ const Listings = ({ user }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleNewListingClick = () => {
-    navigate("/profile/seller/create-listing");
+    navigate("/profile/seller/create-listing", { state: { profileUser: user } });
   };
   const handleSeeAllClick = () => {
     dispatch(findAllListingsThunk(user.listings));
@@ -107,20 +107,12 @@ const Reviews = ({ user }) => {
   const { allReviews } = useSelector((state) => state.reviews);
   const previews = [...allReviews];
 
-  const onAddReviewClick = () => {
-    navigate("/profile/seller/add-review", { state: { profileUser: user } });
-  };
   const onAllReviewsClick = () => {
     navigate("/profile/seller/all-reviews", { state: { profileUser: user } });
   };
   return (
     <>
-      <div className="row">
-        <h3 className="col">Reviews</h3>
-        <button onClick={onAddReviewClick} className="col-4 btn btn-primary rounded-pill p-0">
-          + Add a review
-        </button>
-      </div>
+        <h3 className="mt-4">Reviews</h3>
       {previews.splice(0, 2).map((review) => {
         return (
           <>

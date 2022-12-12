@@ -1,0 +1,38 @@
+export const newItemsExample = [
+  {
+    condition: "NEW",
+    description: "Men Slogan Graphic Tee",
+    image: "http://img.ltwebstatic.com/images3_pi/2022/11/29/1669701175d799529f4bfad4088b5c511b31f154d3_thumbnail_405x552.webp",
+    name: "Men Slogan Graphic Tee",
+    price: 12,
+    sellerName: "SHEIN",
+    _id: "12294130",
+  },
+  {
+    condition: "NEW",
+    description: "Men Contrast Binding Half Button Tee",
+    image: "http://img.ltwebstatic.com/images3_pi/2022/11/09/16679642712ce038395a9cdf09b0581006a466fc5c_thumbnail_405x552.webp",
+    name: "Men Contrast Binding Half Button Tee",
+    price: 20,
+    sellerName: "SHEIN",
+    _id: "12012212",
+  },
+  {
+    condition: "NEW",
+    description: "Men Contrast Binding Half Button Tee",
+    image: "http://img.ltwebstatic.com/images3_pi/2022/12/07/16703897183b55ebc8c71bccea3786d0810c239d67_thumbnail_405x552.webp",
+    name: "Men Contrast Binding Half Button Tee",
+    price: 20,
+    sellerName: "SHEIN",
+    _id: "12012032",
+  },
+  {
+    condition: "NEW",
+    description: "Men Cartoon & Letter Embroidery Drop Shoulder 2 In 1 Tee",
+    image: "http://img.ltwebstatic.com/images3_pi/2022/12/06/1670292066622730bb61ec3d86431e2a7649e9e961_thumbnail_405x552.webp",
+    name: "Men Cartoon & Letter Embroidery Drop Shoulder 2 In 1 Tee",
+    price: 13,
+    sellerName: "SHEIN",
+    _id: "12383655",
+  },
+];
