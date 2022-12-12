@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 // import { updateThunk } from "../../services/users/users-thunks";
 import { uploadImageThunk } from "../../services/items/items-thunks";
-import { updateThunk } from "../../services/users/users-thunks";
+// import { updateThunk } from "../../services/users/users-thunks";
 
 const EditProfileComponent = () => {
   const { currentUser } = useSelector((state) => state.users);
