@@ -12,10 +12,16 @@ const usersSlice = createSlice({
   extraReducers: {
     [signupThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload;
-      state.allUsers.push(action.payload);
+      // state.allUsers.push(action.payload);
+    },
+    [signupThunk.rejected]: (state, action) => {
+      alert("Username already exists");
     },
     [loginThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload;
+    },
+    [loginThunk.rejected]: (state, action) => {
+      alert("Incorrect username or password");
     },
     [profileThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload;
@@ -29,11 +35,6 @@ const usersSlice = createSlice({
         state.currentUser = action.payload;
       }
     },
-    // [findUserByNameThunk.fulfilled]: (state, action) => {
-    //   console.log("find user")
-    //   console.log(action.payload);
-    //   state.publicProfile = action.payload;
-    // },
   },
 });
 

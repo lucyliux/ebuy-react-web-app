@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 // import { updateThunk } from "../../services/users/users-thunks";
 import { uploadImageThunk } from "../../services/items/items-thunks";
+import { updateThunk } from "../../services/users/users-thunks";
 
 const EditProfileComponent = () => {
   const { currentUser } = useSelector((state) => state.users);
@@ -14,23 +15,23 @@ const EditProfileComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onSave = () => {
-    dispatch(uploadImageThunk(avatar)).then((re) => {
-      console.log(re)
-      // const updatedUser = {
-      //   username: currentUser.username,
-      //   email: email,
-      //   phoneNumber: phoneNumber,
-      //   password: password,
-      //   address: address,
-      //   // avatar: avatar,
-      //   role: currentUser.role,
-      //   likes: currentUser.likes,
-      //   listings: currentUser.listings,
-      //   reviews: currentUser.reviews,
-      // };
-      // dispatch(updateThunk(updatedUser));
-      // navigate("/profile", { state: { profileUser: updatedUser } }
-      // );
+    dispatch(uploadImageThunk(avatar)).then((link) => {
+      
+      const updatedUser = {
+        username: currentUser.username,
+        email: email,
+        phoneNumber: phoneNumber,
+        password: password,
+        address: address,
+        avatar: link,
+        role: currentUser.role,
+        likes: currentUser.likes,
+        listings: currentUser.listings,
+        reviews: currentUser.reviews,
+      };
+      dispatch(updateThunk(updatedUser));
+      navigate("/profile", { state: { profileUser: updatedUser } }
+      );
     });
   }
   const onCancel = () => {

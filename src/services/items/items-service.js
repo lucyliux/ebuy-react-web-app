@@ -119,7 +119,7 @@ export const getRemoteItemById = async (itemId) => {
       "X-RapidAPI-Host": "unofficial-shein.p.rapidapi.com",
     },
   };
-  const response = await axios.request(options);
+  const response = await axios.request(options).catch(err => { return {} });
 
   const item = response.data.info;
   if (item) {
@@ -143,8 +143,7 @@ export const uploadImage = async (image) => {
   formData.append("image", image);
 
   const headers = new Headers();
-  headers.append("Authorization", "Client-ID 432ea0ec3154fb2");  //netlify
-  // headers.append("Authorization", "Client-ID 4a58a5af5351f52");
+  headers.append("Authorization", "Client-ID 432ea0ec3154fb2");
   const options = {
     method: "POST",
     headers: headers,
@@ -153,5 +152,5 @@ export const uploadImage = async (image) => {
   };
   fetch("https://api.imgur.com/3/image", options)
     .then(data => data.json())
-    .then(data => console.log(data.data.link));
+    .then(data => data.data.link);
 };

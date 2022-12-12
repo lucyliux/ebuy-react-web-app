@@ -8,17 +8,9 @@ const api = axios.create({
 });
 
 export const signup = async (user) => {
-  const response = await api.post(`${SECURITY_API}/signup`, user).catch((err)=>alert("Username already exists"));
-  // alert("Username already exists");
+  const response = await api.post(`${SECURITY_API}/signup`, user)
+    // .catch((err) => alert("Username already exists"));
 
-  //   .catch((err) => {
-  //   console.log(err.response.data);
-  //   console.log(err.response.status);
-  //   alert("username already exists");
-  // });
-  // if (response.status === 200) {
-  //   alert("Success!")
-  // }
   return response.data;
 };
 

@@ -1,31 +1,31 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginThunk } from "../../services/users/users-thunks";
 import { findRecentLikesThunk, findRecentListingsThunk } from "../../services/items/items-thunks";
 import { findReviewsBySellerThunk } from "../../services/reviews/reviews-thunk";
-// import { getSessionAllThunk } from "../../services/sessions/sessions-thunks";
 
 const LoginComponent = () => {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state) => state.users);
   const loginClickHandler = () => {
     const credentials = {
       username: username,
       password: password,
     };
-    dispatch(loginThunk(credentials)).then(() => {
-      if (currentUser) {
-        dispatch(findRecentListingsThunk(currentUser.listings))
-        dispatch(findRecentLikesThunk(currentUser.likes));
-        dispatch(findReviewsBySellerThunk(currentUser.username));
-        return navigate("/profile", { state: { profileUser: currentUser } });
+    dispatch(loginThunk(credentials)).then((response) => {
+      const user = response.payload;
+      if (user !== undefined) {
+        alert("Success!");
+        dispatch(findRecentListingsThunk(user.listings));
+        dispatch(findRecentLikesThunk(user.likes));
+        dispatch(findReviewsBySellerThunk(user.username));
+        navigate("/");
       }
-    })
+    });
   };
   return (
     <>

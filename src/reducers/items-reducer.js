@@ -9,22 +9,38 @@ const itemsSlice = createSlice({
     allListings: [],
     allLikes: [],
     searchResult: [],
+    loading: false,
+    newItems: [],
   },
   extraReducers: {
     [findRecentLikesThunk.fulfilled]: (state, action) => {
       state.recentLikes = action.payload;
-      console.log(action.payload);
+      state.loading = false;
+    },
+    [findRecentLikesThunk.pending]: (state, action) => {
+      state.loading = true;
     },
     [findRecentListingsThunk.fulfilled]: (state, action) => {
       state.recentListings = action.payload;
+      state.loading = false;
+    },
+    [findRecentListingsThunk.pending]: (state, action) => {
+      state.loading = true;
     },
     [findAllLikesThunk.fulfilled]: (state, action) => {
       state.allLikes = action.payload;
+      state.loading = false;
+    },
+    [findAllLikesThunk.pending]: (state, action) => {
+      state.loading = true;
     },
     [findAllListingsThunk.fulfilled]: (state, action) => {
       state.allListings = action.payload;
+      state.loading = false;
     },
-    // remote api
+    [findAllListingsThunk.pending]: (state, action) => {
+      state.loading = true;
+    },
     [findItemsByKeywordThunk.fulfilled]: (state, action) => {
       state.searchResult = action.payload;
     },

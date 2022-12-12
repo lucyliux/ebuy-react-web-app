@@ -5,9 +5,9 @@ import ItemPreviewList from "../item-preview-list";
 
 const AllListings = () => {
   // const { currentUser } = useSelector((state) => state.users);
-  const { allListings, allLikes } = useSelector((state) => state.items);
+  const { allListings, allLikes, loading } = useSelector((state) => state.items);
   const location = useLocation();
-  const profileUser = location.state.profileUser;
+    const profileUser = location.state.profileUser;
   // const isBuyer = profileUser.role === "BUYER";
   let allItems = [];
   let headerText = "";
@@ -21,7 +21,8 @@ const AllListings = () => {
   return (
     <>
       <h4>{headerText}</h4>
-      <ItemPreviewList items={allItems} />
+          {loading && <span>Loading...</span>}
+          {!loading && <ItemPreviewList items={allItems} />}
     </>
   );
 };

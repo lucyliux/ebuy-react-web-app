@@ -32,6 +32,7 @@ const CreateListingComponent = () => {
         name: itemName,
         condition: condition,
         price: Number(price),
+        date: new Date(),
         // image: image,
         description: description,
         sellerName: currentUser.username,
