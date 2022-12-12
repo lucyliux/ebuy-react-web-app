@@ -11,7 +11,6 @@ const Searchbar = () => {
     if (keyword === "") {
       alert("Please enter a keyword");
     } else {
-      console.log(keyword)
       dispatch(findItemsByKeywordThunk(keyword));
       navigate("/search-result");
     }

@@ -12,6 +12,7 @@ const itemsSlice = createSlice({
     loading: false,
     newItems: [],
     newItemsLoading: false,
+    currentSearch: "",
   },
   extraReducers: {
     [findRecentLikesThunk.fulfilled]: (state, action) => {
@@ -44,6 +45,8 @@ const itemsSlice = createSlice({
     },
     [findItemsByKeywordThunk.fulfilled]: (state, action) => {
       state.searchResult = action.payload;
+      console.log(action.meta.arg)
+      state.currentSearch = action.meta.arg;
       state.loading = false;
     },
     [findItemsByKeywordThunk.pending]: (state, action) => {
