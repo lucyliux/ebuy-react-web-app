@@ -1,6 +1,6 @@
 import Searchbar from "./searchbar";
 import ItemPreviewList from "../item-preview-list";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const HomeComponent = () => {
   const trendingItems = useSelector((state) => state.trendingItems);
