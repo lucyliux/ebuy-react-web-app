@@ -11,6 +11,7 @@ const itemsSlice = createSlice({
     searchResult: [],
     loading: false,
     newItems: [],
+    newItemsLoading: false,
   },
   extraReducers: {
     [findRecentLikesThunk.fulfilled]: (state, action) => {
@@ -43,10 +44,17 @@ const itemsSlice = createSlice({
     },
     [findItemsByKeywordThunk.fulfilled]: (state, action) => {
       state.searchResult = action.payload;
+      state.loading = false;
+    },
+    [findItemsByKeywordThunk.pending]: (state, action) => {
+      state.loading = true;
     },
     [getRecentRemoteItemsThunk.fulfilled]: (state, action) => {
       state.newItems = action.payload;
-      console.log('ayay')
+      state.newItemsLoading = false;
+    },
+    [getRecentRemoteItemsThunk.pending]: (state, action) => {
+      state.newItemsLoading = true;
     }
   },
 });

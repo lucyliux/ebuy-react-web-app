@@ -9,7 +9,6 @@ import Banner from "./components/banner";
 import LoginComponent from "./components/login";
 import RegisterComponent from "./components/register";
 import Profile from "./components/profile";
-import trendingItemsReducer from "./reducers/trending-items-reducer";
 import usersReducer from "./reducers/users-reducer";
 import itemsReducer from "./reducers/items-reducer";
 import CurrentUser from "./services/users/current-user";
@@ -19,7 +18,6 @@ import reviewsReducer from "./reducers/reviews-reducer";
 
 const store = configureStore({
   reducer: {
-    trendingItems: trendingItemsReducer,
     users: usersReducer,
     items: itemsReducer,
     reviews: reviewsReducer,

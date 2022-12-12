@@ -48,8 +48,8 @@ export const findAllRemoteLikes = async (itemIds) => {
   const split = ids.split(",").filter((str) => str !== "");
   let remoteItems = [];
   const promises = split.map(async (id) => await getRemoteItemById(id));
-  await Promise.all(promises).then((ps) => {
-    ps.forEach((p) => remoteItems.push(p));
+  await Promise.all(promises).then((result) => {
+    remoteItems = result.filter(item => item.name !== undefined)
   });
   return remoteItems;
 };
@@ -63,15 +63,6 @@ export const findMongoItemsByKeyword = async (keyword) => {
   const response = await api.post(`${ITEMS_API}/findItemsByKeyword`, { keyword: keyword });
   return response.data;
 };
-
-/////////////////////////////// eBay API /////////////////////////////////
-// const EBAY_BROWSE_API = "https://api.ebay.com/buy/browse/v1/item_summary/search?q=drone&limit=3";
-// export const findRemoteItemsByKeyword = async (keyword) => {
-//   const response = await axios.get(EBAY_BROWSE_API);
-//   console.log("Ebau");
-//   console.log(response);
-//   return response.data;
-// }
 
 export const findRemoteItemsByKeyword = async (keyword) => {
   const options = {
@@ -110,7 +101,6 @@ export const findRemoteItemsByKeyword = async (keyword) => {
 };
 
 export const getRecentRemoteItems = async () => {
-  console.log("haha");
   const options = {
     method: 'GET',
     url: 'https://unofficial-shein.p.rapidapi.com/products/list',
@@ -131,16 +121,12 @@ export const getRecentRemoteItems = async () => {
   };
   
   const response = await axios.request(options).catch((err) => {
-    console.log(err);
     return {};
   });
-  console.log(response)
 
   const items = response.data.info.products;
   const result = [];
-  console.log(items)
   if (items) {
-    console.log("hoho")
     items.forEach(item => {
       const ourItem = {
         _id: item.goods_id,
@@ -151,11 +137,8 @@ export const getRecentRemoteItems = async () => {
         description: item.goods_name,
         sellerName: "SHEIN",
       };
-      console.log(item);
       result.push(ourItem);
-      console.log(result);
     });
-    console.log(result);
     return result;
   } else {
     return {};
@@ -207,9 +190,6 @@ export const uploadImage = async (image) => {
   };
   const data = await fetch("https://api.imgur.com/3/image", options);
 
-  console.log(data);
   const json = await data.json();
-  console.log(json);
-  console.log(json.data.link);
   return json.data.link;
 };

@@ -21,6 +21,7 @@ const AddReview = () => {
       const newReview = {
         sellerName: seller.username,
         buyerName: currentUser.username,
+        buyerAvatar: currentUser.avatar,
         date: new Date(),
         content: review,
       };

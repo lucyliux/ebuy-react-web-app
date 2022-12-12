@@ -19,7 +19,7 @@ const Banner = () => {
           eBuy
         </h1>
         <span className="mb-0 d-flex justify-content-md-center ms-4 me-4 text-primary" style={{ textAlign: "center" }}>
-          Buy or sell items.
+          Buy or sell items
         </span>
         {(currentUser === null || currentUser === undefined || currentUser === "") && (
           <div className="row m-0 me-5 pt-3 float-right justify-content-end position-relative" style={{ bottom: "65px" }}>
