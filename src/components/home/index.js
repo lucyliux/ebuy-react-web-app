@@ -1,12 +1,10 @@
 import Searchbar from "./searchbar";
 import ItemPreviewList from "../item-preview-list";
 import { useDispatch, useSelector } from "react-redux";
-import { uploadImageThunk } from "../../services/items/items-thunks";
 
 const HomeComponent = () => {
   const trendingItems = useSelector((state) => state.trendingItems);
   const { currentUser } = useSelector((state) => state.users);
-  const dispatch = useDispatch();
   return (
     <>
       <div className="ps-5 pe-5">
