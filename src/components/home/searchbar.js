@@ -10,25 +10,29 @@ const Searchbar = () => {
   const searchClickHander = () => {
     if (keyword === "") {
       alert("Please enter a keyword");
-    }
-    else {
+    } else {
       dispatch(findItemsByKeywordThunk(keyword));
       navigate("/search-result");
     }
-  }
+  };
+
   return (
     <>
       <div>
-          <input
-            placeholder="Search eBuy"
-            className="form-control rounded-pill ps-5"
-            style={{ width: "100%", backgroundColor: "#1E1E1E", color: "#FFFFFF" }}
-            onChange={(e) => setKeyword(e.target.value)}
-          />
-        <button onClick={searchClickHander} className="position-relative" style={{ bottom: "38px", left: "15px", color:"#C8C8C8"}}><i
-            className="bi bi-search position-relative"
-            // style={{ bottom: "38px", left: "15px", color:"#C8C8C8"}}
-        ></i></button>
+        <input
+          type="search"
+          placeholder="Search eBuy"
+          className="form-control rounded-pill ps-5"
+          style={{ width: "100%", backgroundColor: "#1E1E1E", color: "#FFFFFF" }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              searchClickHander();
+            } else {
+              setKeyword(e.key);
+            }
+          }}
+        />
+        <i className="bi bi-search position-relative" style={{ bottom: "38px", left: "15px", color: "#C8C8C8" }}></i>
       </div>
     </>
   );

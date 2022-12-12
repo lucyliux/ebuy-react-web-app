@@ -119,7 +119,9 @@ export const getRemoteItemById = async (itemId) => {
       "X-RapidAPI-Host": "unofficial-shein.p.rapidapi.com",
     },
   };
-  const response = await axios.request(options).catch(err => { return {} });
+  const response = await axios.request(options).catch((err) => {
+    return {};
+  });
 
   const item = response.data.info;
   if (item) {
@@ -150,14 +152,11 @@ export const uploadImage = async (image) => {
     body: formData,
     redirect: "follow",
   };
-  const data = await fetch("https://api.imgur.com/3/image", options)
-    // .then(data => data.json()).then(data => data.link);
-  
+  const data = await fetch("https://api.imgur.com/3/image", options);
+
   console.log(data);
   const json = await data.json();
   console.log(json);
   console.log(json.data.link);
   return json.data.link;
-  // return response;
-    // .then(data => data.data.link);
 };

@@ -14,28 +14,32 @@ const EditProfileComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onSave = () => {
-    dispatch(uploadImageThunk(avatar)).then((response) => {
-      const link = response.payload;
-      console.log(typeof (link))
-      console.log(link)
-      const updatedUser = {
-        username: currentUser.username,
-        email: email,
-        phoneNumber: phoneNumber,
-        password: password,
-        address: address,
-        avatar: link,
-        role: currentUser.role,
-        likes: currentUser.likes,
-        listings: currentUser.listings,
-        reviews: currentUser.reviews,
-      };
-      console.log(updatedUser)
+    const updatedUser = {
+      username: currentUser.username,
+      email: email,
+      phoneNumber: phoneNumber,
+      password: password,
+      address: address,
+      avatar: currentUser.avatar,
+      role: currentUser.role,
+      likes: currentUser.likes,
+      listings: currentUser.listings,
+      reviews: currentUser.reviews,
+    };
+    if (avatar != null) {
+      dispatch(uploadImageThunk(avatar)).then((response) => {
+        const link = response.payload;
+        updatedUser.avatar = link;
+        console.log(updatedUser);
+        dispatch(updateThunk(updatedUser));
+        navigate("/profile", { state: { profileUser: updatedUser } });
+      });
+    } else {
+      console.log(updatedUser);
       dispatch(updateThunk(updatedUser));
-      navigate("/profile", { state: { profileUser: updatedUser } }
-      );
-    });
-  }
+      navigate("/profile", { state: { profileUser: updatedUser } });
+    }
+  };
   const onCancel = () => {
     navigate("/profile", { state: { profileUser: currentUser } });
   };
@@ -43,18 +47,19 @@ const EditProfileComponent = () => {
     <>
       <div className="ps-5 pe-5">
         <h1>Edit Profile</h1>
-        <div className="row pt-3">
+        <div className="row">
           <div className="col-12 col-md-6">
             <div style={{ width: "330px" }}>
               <div className="col-1 wd-fill rounded-circle position-relative mb-2" style={{ width: "330px", height: "330px", backgroundColor: "gray" }}>
                 <img src={currentUser.avatar} alt="img" />
               </div>
               <div className="row ms-1 me-1">
-                <input id="input" type="file" className="col rounded" onChange={e => setAvatar(e.target.files[0])} />
+                <input id="input" type="file" className="col rounded" onChange={(e) => setAvatar(e.target.files[0])} />
               </div>
             </div>
           </div>
           <div className="col-12 col-md-6">
+            <h2>{currentUser.username}</h2>
             <TextBox fieldName="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
             <TextBox fieldName="Phone number" value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} />
             <TextBox fieldName="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
@@ -79,7 +84,7 @@ const TextBox = ({ fieldName, value, onChange }) => {
   return (
     <>
       <label for={fieldName}>{fieldName}</label>
-      <input id={fieldName} className="form-control override-bs mb-4 wd-center" value={value} onChange={onChange}></input>
+      <input id={fieldName} className="form-control override-bs mb-3 wd-center" value={value} onChange={onChange}></input>
     </>
   );
 };
