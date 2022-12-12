@@ -3,20 +3,19 @@ import {useNavigate} from "react-router";
 import { findAllLikesThunk } from "../../../services/items/items-thunks";
 import ItemPreviewList from "../../item-preview-list";
 
-const BuyerProfilePublic = () => {
-  const { currentUser } = useSelector((state) => state.users);
+const BuyerProfilePublic = ({user}) => {
   return (
     <>
       <div className="ps-5 pe-5">
         <div class="row mb-5">
           <div href="profile" className="col-1 wd-fill rounded-circle position-relative" style={{ width: "100px", height: "100px", backgroundColor: "gray"}}>
-            <img  src={currentUser.avatar} alt="img"/>
+            <img  src={user.avatar} alt="img"/>
           </div>
-          <span className="col" style={{fontSize: "50px"}}>{currentUser.username}</span>
-          <div className="col-6"><RoleTag role={currentUser.role} /></div>
+          <span className="col" style={{fontSize: "50px"}}>{user.username}</span>
+          <div className="col-5 col-lg-7 col-xl-9"><RoleTag role={user.role} /></div>
         </div>
         <hr/>
-        <LikedItems user={currentUser} />
+        <LikedItems user={user} />
       </div>
     </>
   )

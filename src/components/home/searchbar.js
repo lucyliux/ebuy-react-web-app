@@ -11,6 +11,7 @@ const Searchbar = () => {
     if (keyword === "") {
       alert("Please enter a keyword");
     } else {
+      console.log(keyword)
       dispatch(findItemsByKeywordThunk(keyword));
       navigate("/search-result");
     }
@@ -23,11 +24,10 @@ const Searchbar = () => {
           placeholder="Search eBuy"
           className="form-control rounded-pill ps-5"
           style={{ width: "100%", backgroundColor: "#1E1E1E", color: "#FFFFFF" }}
+          onChange={(e)=>setKeyword(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               searchClickHander();
-            } else {
-              setKeyword(e.key);
             }
           }}
         />

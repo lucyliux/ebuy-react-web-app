@@ -15,7 +15,7 @@ const Banner = () => {
   return (
     <>
       <div className="pt-2" style={{ marginBottom: "-50px" }}>
-        <h1 className="mb-0" style={{ textAlign: "center" }}>
+        <h1 className="mb-0 d-flex justify-content-md-center ms-5 me-5" style={{ textAlign: "center" }}>
           eBuy
         </h1>
         {(currentUser === null || currentUser === undefined || currentUser==="") && 
@@ -45,7 +45,7 @@ const LoginRegisterButton = ({ name, path }) => {
   };
   return (
     <>
-      <button className="col-1 btn btn-primary rounded-pill me-3 align-items-right" style={{ fontSize: "15px", paddingTop: "4px", paddingBottom: "4px" }} onClick={routeChange}>
+      <button className="col-2 col-md-1 btn btn-primary rounded-pill me-3 align-items-right" style={{ fontSize: "15px", paddingTop: "4px", paddingBottom: "4px" }} onClick={routeChange}>
         {name}
       </button>
     </>
@@ -61,7 +61,7 @@ const LogoutButton = () => {
   };
   return (
     <>
-      <button className="col-1 btn btn-primary rounded-pill me-3 align-items-right" style={{ fontSize: "15px", paddingTop: "4px", paddingBottom: "4px" }} onClick={logoutClickHandler}>
+      <button className="col-2 col-md-1 btn btn-primary rounded-pill align-items-right" style={{ fontSize: "15px", paddingTop: "4px", paddingBottom: "4px" }} onClick={logoutClickHandler}>
         Logout
       </button>
     </>
@@ -72,7 +72,6 @@ const Profile = ({ user }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onProfileClick = () => {
-    // user.role === "SELLER" ? dispatch(findRecentListingsThunk(user.listings)) :
     dispatch(findRecentLikesThunk(user.likes));
     dispatch(findRecentListingsThunk(user.listings));
     dispatch(findReviewsBySellerThunk(user.username));
