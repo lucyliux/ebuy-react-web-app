@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { createItemThunk, findRecentListingsThunk } from "../../../services/items/items-thunks";
+import { createItemThunk, findRecentListingsThunk, uploadImageThunk } from "../../../services/items/items-thunks";
 import { updateThunk } from "../../../services/users/users-thunks";
 
 const CreateListingComponent = () => {
@@ -23,11 +23,9 @@ const CreateListingComponent = () => {
       alert("Please enter a valid price.");
     } else if (description === "") {
       alert("Please enter an item description.");
-    }
-    else if (image === null) {
+    } else if (image === null) {
       alert("Please upload an image.");
-    }
-    else {
+    } else {
       dispatch(uploadImageThunk(image)).then((response) => {
         const link = response.payload;
         const newItem = {
@@ -58,8 +56,10 @@ const CreateListingComponent = () => {
             navigate("/profile", { state: { profileUser: updatedSeller } });
           });
         });
-      })
+      });
+    }
   };
+
   return (
     <>
       <div style={{ width: "40%", marginLeft: "auto", marginRight: "auto" }}>
