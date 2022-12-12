@@ -16,7 +16,7 @@ const EditProfileComponent = () => {
   const dispatch = useDispatch();
   const onSave = () => {
     dispatch(uploadImageThunk(avatar)).then((response) => {
-      const link = response;
+      const link = response.payload;
       console.log(typeof (link))
       console.log(link)
       const updatedUser = {
