@@ -28,35 +28,37 @@ const CreateListingComponent = () => {
       alert("Please upload an image.");
     }
     else {
-      const newItem = {
-        name: itemName,
-        condition: condition,
-        price: Number(price),
-        date: new Date(),
-        image: image,
-        description: description,
-        sellerName: currentUser.username,
-      };
-      dispatch(createItemThunk(newItem)).then((response) => {
-        const updatedSeller = {
-          username: currentUser.username,
-          email: currentUser.email,
-          phoneNumber: currentUser.phoneNumber,
-          password: currentUser.password,
-          address: currentUser.address,
-          avatar: currentUser.avatar,
-          role: currentUser.role,
-          likes: currentUser.likes,
-          listings: currentUser.listings,
-          reviews: currentUser.reviews,
+      dispatch(uploadImageThunk(image)).then((response) => {
+        const link = response.payload;
+        const newItem = {
+          name: itemName,
+          condition: condition,
+          price: Number(price),
+          date: new Date(),
+          image: link,
+          description: description,
+          sellerName: currentUser.username,
         };
-        updatedSeller.listings = response.payload._id + "," + updatedSeller.listings;
-        dispatch(updateThunk(updatedSeller)).then(() => {
-          dispatch(findRecentListingsThunk(updatedSeller.listings));
-          navigate("/profile", { state: { profileUser: updatedSeller } });
+        dispatch(createItemThunk(newItem)).then((response) => {
+          const updatedSeller = {
+            username: currentUser.username,
+            email: currentUser.email,
+            phoneNumber: currentUser.phoneNumber,
+            password: currentUser.password,
+            address: currentUser.address,
+            avatar: currentUser.avatar,
+            role: currentUser.role,
+            likes: currentUser.likes,
+            listings: currentUser.listings,
+            reviews: currentUser.reviews,
+          };
+          updatedSeller.listings = response.payload._id + "," + updatedSeller.listings;
+          dispatch(updateThunk(updatedSeller)).then(() => {
+            dispatch(findRecentListingsThunk(updatedSeller.listings));
+            navigate("/profile", { state: { profileUser: updatedSeller } });
+          });
         });
-      });
-    }
+      })
   };
   return (
     <>
