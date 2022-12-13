@@ -59,12 +59,12 @@ export const findAllMongoLikes = async (itemIds) => {
   return response.data;
 };
 
-export const findMongoItemsByKeyword = async (keyword) => {
-  const response = await api.post(`${ITEMS_API}/findItemsByKeyword`, { keyword: keyword });
+export const findMongoItemsByKeyword = async ({keyword, num}) => {
+  const response = await api.post(`${ITEMS_API}/findItemsByKeyword`, { keyword: keyword, limit: num });
   return response.data;
 };
 
-export const findRemoteItemsByKeyword = async (keyword) => {
+export const findRemoteItemsByKeyword = async ({ keyword, num }) => {
   const options = {
     method: "GET",
     url: "https://unofficial-shein.p.rapidapi.com/products/search",
@@ -74,7 +74,7 @@ export const findRemoteItemsByKeyword = async (keyword) => {
       country: "US",
       currency: "USD",
       sort: "7",
-      limit: "20",
+      limit: num.toString(),
       page: "1",
     },
     headers: {
@@ -112,6 +112,52 @@ export const getRecentRemoteItems = async () => {
       currency: 'USD',
       sort: '9',
       limit: '4',
+      page: '1'
+    },
+    headers: {
+      'X-RapidAPI-Key': 'b93a0037cbmsh6334c9022053620p1d848cjsndc98ae9825cf',
+      'X-RapidAPI-Host': 'unofficial-shein.p.rapidapi.com'
+    }
+  };
+  
+  const response = await axios.request(options).catch((err) => {
+    return {};
+  });
+
+  const items = response.data.info.products;
+  const result = [];
+  if (items) {
+    items.forEach(item => {
+      const ourItem = {
+        _id: item.goods_id,
+        name: item.goods_name,
+        condition: "NEW",
+        price: Number(item.salePrice.amount),
+        image: item.goods_img,
+        description: item.goods_name,
+        sellerName: "SHEIN",
+      };
+      result.push(ourItem);
+    });
+    return result;
+  } else {
+    return {};
+  }
+}
+
+
+export const getAllRemoteItems = async (num) => {
+  const options = {
+    method: 'GET',
+    url: 'https://unofficial-shein.p.rapidapi.com/products/list',
+    params: {
+      cat_id: '1980',
+      adp: '10170797',
+      language: 'en',
+      country: 'US',
+      currency: 'USD',
+      sort: '9',
+      limit: num.toString(),
       page: '1'
     },
     headers: {

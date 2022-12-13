@@ -70,11 +70,9 @@ const LikedItems = ({ user }) => {
   const dispatch = useDispatch();
   const { recentLikes, loading } = useSelector((state) => state.items);
   const handleSeeAllClick = () => {
-    console.log(user);
     dispatch(findAllLikesThunk(user.likes));
     navigate("/profile/buyer/all-likes", { state: { profileUser: user } });
   };
-  console.log(recentLikes);
   return (
     <>
       <div>

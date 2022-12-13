@@ -6,7 +6,6 @@ import { newItemsExample } from "../../services/items/items";
 const HomeComponent = () => {
   const { newItems, newItemsLoading } = useSelector((state) => state.items);
   const { currentUser } = useSelector((state) => state.users);
-  console.log(currentUser);
   return (
     <>
       <div className="ps-5 pe-5">

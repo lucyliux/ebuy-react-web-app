@@ -1,22 +1,16 @@
 import { Routes, Route, useLocation } from "react-router";
 import SellerProfile from "./seller/seller-profile";
 import EditProfileComponent from "./edit-profile";
-import { useDispatch } from "react-redux";
 import CreateListingComponent from "./seller/create-listing";
 import AllListings from "../all-listings";
 import AddReview from "./seller/reviews/add-review";
 import AllReviews from "./seller/reviews/all-reviews";
-import { findUserByNameThunk } from "../../services/users/users-thunks";
 import ProtectedRoute from "../../services/users/protected-route";
 import BuyerProfile from "./buyer";
 
 const Profile = () => {
   const location = useLocation();
-  console.log(location.state)
-  console.log(location.state.profileUser);
   const profileUser = location.state.profileUser;
-  const dispatch = useDispatch();
-  dispatch(findUserByNameThunk("seller3"));
   const isBuyer = profileUser.role === "BUYER";
   return (
     <div>

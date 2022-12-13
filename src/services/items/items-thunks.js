@@ -50,13 +50,14 @@ export const findAllLikesThunk = createAsyncThunk("findAllLikes", async (itemIds
   return remoteLikes.concat(mongoLikes);
 });
 
-/////////////////////////////// eBay API /////////////////////////////////
-export const findItemsByKeywordThunk = createAsyncThunk("findRemoteItemsByKeyword", async (keyword) => {
-  const remoteResult = await service.findRemoteItemsByKeyword(keyword);
-  const mongoResult = await service.findMongoItemsByKeyword(keyword);
+export const findItemsByKeywordThunk = createAsyncThunk("findRemoteItemsByKeyword", async ({ keyword, num }) => {
+  const remoteResult = await service.findRemoteItemsByKeyword({ keyword: keyword, num: num });
+  const mongoResult = await service.findMongoItemsByKeyword({ keyword: keyword, num: num });
   return mongoResult.concat(remoteResult);
 });
 
 export const uploadImageThunk = createAsyncThunk("uploadImage", async (image) => await service.uploadImage(image));
 
 export const getRecentRemoteItemsThunk = createAsyncThunk("getRecentRemoteItems", async () => await service.getRecentRemoteItems());
+
+export const getAllRemoteItemsThunk = createAsyncThunk("getAllRemoteItems", async (num) => await service.getAllRemoteItems(num));

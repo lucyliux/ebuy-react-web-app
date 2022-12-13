@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
-import { findRecentLikesThunk, findRecentListingsThunk } from "../../services/items/items-thunks";
+import { findRecentLikesThunk, findRecentListingsThunk, getRecentRemoteItemsThunk } from "../../services/items/items-thunks";
 import { findReviewsBySellerThunk } from "../../services/reviews/reviews-thunk";
 import { findUserByNameThunk, updateThunk } from "../../services/users/users-thunks";
 
@@ -13,9 +13,12 @@ const ItemDetail = () => {
   const navigate = useNavigate();
   const onClickSellerInfo = () => {
     dispatch(findUserByNameThunk(item.sellerName)).then((response) => {
-      console.log(response.payload);
       const user = response.payload;
-      dispatch(findRecentListingsThunk(user.listings));
+      if (user.username === "SHEIN") {
+        dispatch(getRecentRemoteItemsThunk());
+      } else {
+        dispatch(findRecentListingsThunk(user.listings));
+      }
       dispatch(findReviewsBySellerThunk(user.username));
       navigate(`/profile/${user.username}`, { state: { profileUser: user } });
     });
@@ -77,17 +80,13 @@ const LikeButton = ({ itemId }) => {
         listings: currentUser.listings,
         reviews: currentUser.reviews,
       };
-      console.log(updatedBuyer.likes);
       dispatch(updateThunk(updatedBuyer)).then(() => {
         dispatch(findRecentLikesThunk(updatedBuyer.likes));
-        console.log(updatedBuyer.likes)
-        console.log(recentLikes);
       });
       liked = true;
     }
   };
   const unlikeClickHandler = () => {
-    // console.log(currentUser);
     if (currentUser) {
       const updatedBuyer = {
         username: currentUser.username,

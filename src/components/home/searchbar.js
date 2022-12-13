@@ -11,7 +11,7 @@ const Searchbar = () => {
     if (keyword === "") {
       alert("Please enter a keyword");
     } else {
-      dispatch(findItemsByKeywordThunk(keyword));
+      dispatch(findItemsByKeywordThunk({ keyword: keyword, num: 20}));
       navigate("/search-result");
     }
   };

@@ -30,12 +30,10 @@ const EditProfileComponent = () => {
       dispatch(uploadImageThunk(avatar)).then((response) => {
         const link = response.payload;
         updatedUser.avatar = link;
-        console.log(updatedUser);
         dispatch(updateThunk(updatedUser));
         navigate("/profile", { state: { profileUser: updatedUser } });
       });
     } else {
-      console.log(updatedUser);
       dispatch(updateThunk(updatedUser));
       navigate("/profile", { state: { profileUser: updatedUser } });
     }
