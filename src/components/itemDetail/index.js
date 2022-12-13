@@ -65,7 +65,6 @@ const LikeButton = ({ itemId }) => {
   if (currentUser !== null && currentUser.likes.includes(itemId)) {
     liked = true;
   }
-  const { recentLikes } = useSelector((state) => state.items);
   const likeClickHandler = () => {
     if (currentUser) {
       const updatedBuyer = {
