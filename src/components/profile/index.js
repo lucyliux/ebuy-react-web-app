@@ -15,8 +15,6 @@ const Profile = () => {
   return (
     <div>
       <Routes>
-        
-        {/* <Route path="/:username" element={profileUser.role<SellerProfilePublic user={profileUser} />} /> */}
         <Route path="/edit-profile" element={<EditProfileComponent />} />
         <Route path="/seller/create-listing" element={<CreateListingComponent />} />
         <Route path="/seller/all-listings" element={<AllListings />} />

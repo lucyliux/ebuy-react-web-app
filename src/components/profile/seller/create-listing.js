@@ -80,11 +80,6 @@ const CreateListingComponent = () => {
           Upload an image of this item
         </div>
         <input id="input" type="file" className="m-0 mb-3" onChange={(e) => setImage(e.target.files[0])} />
-
-        {/* <div className="row m-0 mb-3">
-          <button className="col-4 rounded">Choose File</button>
-          <span className="col">No file chosen</span>
-        </div> */}
         <div className="row m-0">
           <button className="col btn btn-primary rounded-pill me-1" style={{ backgroundColor: "#105cd4", borderColor: "transparent" }} onClick={createListingClickHandler}>
             <b>Create listing</b>
