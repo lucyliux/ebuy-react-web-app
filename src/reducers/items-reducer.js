@@ -13,7 +13,7 @@ const itemsSlice = createSlice({
     newItems: [],
     newItemsLoading: false,
     noMoreResults: false,
-    currentSearch: "",
+    currentSearch: null,
   },
   extraReducers: {
     [findRecentLikesThunk.fulfilled]: (state, action) => {
@@ -54,7 +54,9 @@ const itemsSlice = createSlice({
     },
     [findItemsByKeywordThunk.pending]: (state, action) => {
       state.noMoreResults = false;
-      state.searchResult = [];
+      if (state.currentSearch !== null && action.meta.arg.keyword !== state.currentSearch.keyword) {
+        state.searchResult = [];
+      }
       if (action.meta.arg.num === 20) {
         state.loading = true;
       }
@@ -81,9 +83,9 @@ const itemsSlice = createSlice({
       }
     },
     [deleteItemThunk.fulfilled]: (state, action) => {
-      state.allListings.filter(item => item._id !== action.payload)
-      state.recentListings.filter(item => item._id !== action.payload)
-    }
+      state.allListings.filter((item) => item._id !== action.payload);
+      state.recentListings.filter((item) => item._id !== action.payload);
+    },
   },
 });
 

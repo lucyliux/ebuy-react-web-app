@@ -13,13 +13,13 @@ const SearchResult = () => {
       <div className="mb-5">
         {!loading && (
           <div className="mb-2" style={{ fontSize: "25px" }}>
-            Search results for <b>{currentSearch.keyword}</b>
+            Search results for <b>{currentSearch ? currentSearch.keyword : ""}</b>
           </div>
         )}
         {loading && <span>Loading...</span>}
         {!loading && searchResult.length === 0 && (
           <span>
-            No search results for <b>{currentSearch.keyword}</b>
+            No search results for <b>{currentSearch ? currentSearch.keyword : ""}</b>
           </span>
         )}
         {!loading && <ItemPreviewList items={searchResult} />}

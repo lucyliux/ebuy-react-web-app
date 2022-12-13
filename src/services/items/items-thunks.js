@@ -4,7 +4,7 @@ import * as service from "./items-service";
 export const createItemThunk = createAsyncThunk("createItem", async (item) => await service.createItem(item));
 
 export const deleteItemThunk = createAsyncThunk("deleteItem", async (itemId) => {
-  await service.deleteItem(itemId)
+  await service.deleteItem(itemId);
   return itemId;
 });
 
@@ -19,7 +19,7 @@ export const findRecentLikesThunk = createAsyncThunk("findRecentLikes", async (i
     recentLikes = recentLikes.replace(item._id + ",", "");
   });
   const mongoLikes = await service.findRecentMongoLikes(recentLikes);
-  if (remoteLikes === null || remoteLikes === "" || remoteLikes[0].name === undefined || remoteLikes.length === 0) {
+  if (remoteLikes === null || remoteLikes.length === 0 || remoteLikes === "" || remoteLikes[0].name === undefined || remoteLikes.length === 0) {
     if (mongoLikes === null || Object.keys(mongoLikes).length === 0 || mongoLikes[0].name === undefined) {
       return null;
     } else {

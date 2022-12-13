@@ -38,8 +38,6 @@ const ItemDetail = () => {
             <br />
             <span style={{ fontSize: "30px", fontWeight: "300" }}>Condition: {item.condition === "NEW" ? "New" : "Used"}</span>
             <br />
-            <span style={{ fontSize: "30px", fontWeight: "300" }}>Posted on: {item.date !== undefined ? item.date : "Date not available"}</span>
-            <br />
             <button className="btn m-0 p-0" style={{ fontSize: "30px", fontWeight: "300", color: "white", borderColor: "transparent" }} onClick={onClickSellerInfo}>
               See <span style={{ color: "#105cd4" }}>seller contact info</span>
             </button>
