@@ -1,6 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router";
+import { deleteItemThunk, findAllListingsThunk, findRecentListingsThunk } from "../../services/items/items-thunks";
 
 const ItemPreview = ({ item, renderHeart = false }) => {
   const { currentUser } = useSelector((state) => state.users);
@@ -10,12 +11,27 @@ const ItemPreview = ({ item, renderHeart = false }) => {
   }
   const liked = likedList.includes(item._id);
   const navigate = useNavigate();
-  const onClick = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const isCurrentSeller = currentUser!== null && currentUser.username === item.sellerName && !location.pathname.startsWith("/search");
+  const margin = isCurrentSeller ? "-40px" : "";
+  const onClickItem = () => {
     navigate("/item-details/" + item._id, { state: { item: item } });
   };
+  const onDeleteItem = () => {
+    dispatch(deleteItemThunk(item._id));
+    dispatch(findRecentListingsThunk(currentUser.listings));
+    dispatch(findAllListingsThunk(currentUser.listings));
+  };
+
   return (
     <>
-      <div onClick={onClick}>
+      {isCurrentSeller && (
+        <button onClick={onDeleteItem} className="btn btn-primary rounded-pill position-relative m-0 p-0 ps-2 pe-2" style={{ height: "35px", top: "45px", left: "165px", zIndex: "1" }}>
+          delete
+        </button>
+      )}
+      <div onClick={onClickItem} style={{ marginBottom: margin }}>
         <div className="mb-5 rounded" style={{ width: "250px", height: "250px", backgroundColor: "white" }}>
           <div className="wd-fill rounded-top" style={{ width: "250px", height: "220px", backgroundColor: "gray" }}>
             <img src={item.image} alt="img" />
@@ -24,7 +40,7 @@ const ItemPreview = ({ item, renderHeart = false }) => {
             <span className="col-9" style={{ overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", color: "black" }}>
               {item.name}
             </span>
-            <span className="col-3 m-0 p-0" style={{ color: "black", textAlign:"end" }}>
+            <span className="col-3 m-0 p-0" style={{ color: "black", textAlign: "end" }}>
               ${item.price}
             </span>
           </div>

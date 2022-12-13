@@ -12,9 +12,10 @@ import Profile from "./components/profile";
 import usersReducer from "./reducers/users-reducer";
 import itemsReducer from "./reducers/items-reducer";
 import CurrentUser from "./services/users/current-user";
-import SearchResult from "./components/search-result.js";
+import SearchResult from "./components/search/search-result.js/index.js";
 import ItemDetail from "./components/itemDetail";
 import reviewsReducer from "./reducers/reviews-reducer";
+import Search from "./components/search";
 
 const store = configureStore({
   reducer: {
@@ -35,7 +36,8 @@ function App() {
               <Route path="/*" element={<HomeComponent />} />
               <Route path="/login" element={<LoginComponent />} />
               <Route path="/register" element={<RegisterComponent />} />
-              <Route path="/search-result" element={<SearchResult />} />
+              {/* <Route path="/search/:keyword" element={<SearchResult />} /> */}
+              <Route path="/search*" element={<Search />} />
               <Route path="/item-details/:itemId" element={<ItemDetail />} />
               <Route
                 path="/profile*"

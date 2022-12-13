@@ -3,6 +3,11 @@ import * as service from "./items-service";
 
 export const createItemThunk = createAsyncThunk("createItem", async (item) => await service.createItem(item));
 
+export const deleteItemThunk = createAsyncThunk("deleteItem", async (itemId) => {
+  await service.deleteItem(itemId)
+  return itemId;
+});
+
 export const findRecentLikesThunk = createAsyncThunk("findRecentLikes", async (itemIds) => {
   if (itemIds === "") {
     return [];

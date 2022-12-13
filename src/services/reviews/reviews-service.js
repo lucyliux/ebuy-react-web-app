@@ -15,3 +15,8 @@ export const findReviewsBySeller = async (sellerName) => {
   const response = await api.post(`${REVIEWS_API}/findReviewsBySeller`, { sellerName: sellerName });
   return response.data;
 };
+
+export const deleteReview = async (id) => {
+  const response = await api.delete(`${REVIEWS_API}/${id}`);
+  return response.data;
+}

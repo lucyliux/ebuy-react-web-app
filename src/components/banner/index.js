@@ -12,6 +12,9 @@ const Banner = () => {
   const onHomeClick = () => {
     navigate("/");
   };
+  const onSearchClick = () => {
+    navigate("/search");
+  };
   return (
     <>
       <div className="pt-2" style={{ marginBottom: "-50px" }}>
@@ -22,15 +25,17 @@ const Banner = () => {
           Buy or sell items
         </span>
         {(currentUser === null || currentUser === undefined || currentUser === "") && (
-          <div className="row m-0 me-5 pt-3 float-right justify-content-end position-relative" style={{ bottom: "65px" }}>
-            <i onClick={onHomeClick} className="btn bi bi-house-fill m-0 p-0 position-relative me-3" style={{ color: "white", fontSize: "40px", width: "40px", height: "40px", bottom: "10px", borderColor: "transparent" }}></i>
+          <div className="row m-0 me-4 pt-3 float-right justify-content-end position-relative" style={{ bottom: "65px" }}>
+            <i onClick={onSearchClick} className="btn bi bi-search m-0 p-0 position-relative me-2" style={{ color: "white", fontSize: "30px", width: "40px", height: "40px", bottom: "2px", borderColor: "transparent" }}></i>
+            <i onClick={onHomeClick} className="btn bi bi-house-fill m-0 p-0 position-relative me-2" style={{ color: "white", fontSize: "35px", width: "40px", height: "40px", bottom: "7px", borderColor: "transparent" }}></i>
             <LoginRegisterButton name="Login" path="login" />
             <LoginRegisterButton name="Register" path="register" />
           </div>
         )}
         {currentUser !== null && currentUser !== undefined && currentUser !== "" && (
           <div className="row m-0 me-5 pt-3 float-right justify-content-end position-relative" style={{ bottom: "65px" }}>
-            <i onClick={onHomeClick} className="btn bi bi-house-fill m-0 p-0 position-relative me-3" style={{ color: "white", fontSize: "40px", width: "40px", height: "40px", bottom: "10px", borderColor: "transparent" }}></i>
+            <i onClick={onSearchClick} className="btn bi bi-search m-0 p-0 position-relative me-2" style={{ color: "white", fontSize: "30px", width: "40px", height: "40px", bottom: "2px", borderColor: "transparent" }}></i>
+            <i onClick={onHomeClick} className="btn bi bi-house-fill m-0 p-0 position-relative me-2" style={{ color: "white", fontSize: "35px", width: "40px", height: "40px", bottom: "7px", borderColor: "transparent" }}></i>
             <Profile user={currentUser} />
             <LogoutButton />
           </div>

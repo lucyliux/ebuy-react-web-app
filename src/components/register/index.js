@@ -52,7 +52,7 @@ const RegisterComponent = () => {
           dispatch(findRecentListingsThunk(user.listings));
           dispatch(findRecentLikesThunk(user.likes))
           alert("Success!");
-          navigate("/");
+          navigate("/profile", {state: {profileUser: user}});
         }
       });
     }

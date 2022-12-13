@@ -24,7 +24,7 @@ const LoginComponent = () => {
         dispatch(findRecentListingsThunk(user.listings));
         dispatch(findRecentLikesThunk(user.likes));
         dispatch(findReviewsBySellerThunk(user.username));
-        navigate("/");
+        navigate("/profile", {state: {profileUser: user}});
       }
     });
   };

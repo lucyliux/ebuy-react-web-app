@@ -11,6 +11,8 @@ export const createItem = async (item) => {
   return response.data;
 };
 
+export const deleteItem = async (itemId) => await api.delete(`${ITEMS_API}/${itemId}`);
+
 export const findRecentRemoteLikes = async (itemIds) => {
   const ids = itemIds;
   const split = ids
@@ -46,7 +48,7 @@ export const findAllRemoteLikes = async (itemIds) => {
   let remoteItems = [];
   const promises = split.map(async (id) => await getRemoteItemById(id));
   await Promise.all(promises).then((result) => {
-    remoteItems = result.filter(item => item.name !== undefined)
+    remoteItems = result.filter((item) => item.name !== undefined);
   });
   return remoteItems;
 };
@@ -56,7 +58,7 @@ export const findAllMongoLikes = async (itemIds) => {
   return response.data;
 };
 
-export const findMongoItemsByKeyword = async ({keyword, num}) => {
+export const findMongoItemsByKeyword = async ({ keyword, num }) => {
   const response = await api.post(`${ITEMS_API}/findItemsByKeyword`, { keyword: keyword, limit: num });
   return response.data;
 };
@@ -98,24 +100,24 @@ export const findRemoteItemsByKeyword = async ({ keyword, num }) => {
 
 export const getRecentRemoteItems = async () => {
   const options = {
-    method: 'GET',
-    url: 'https://unofficial-shein.p.rapidapi.com/products/list',
+    method: "GET",
+    url: "https://unofficial-shein.p.rapidapi.com/products/list",
     params: {
-      cat_id: '1980',
-      adp: '10170797',
-      language: 'en',
-      country: 'US',
-      currency: 'USD',
-      sort: '9',
-      limit: '4',
-      page: '1'
+      cat_id: "1980",
+      adp: "10170797",
+      language: "en",
+      country: "US",
+      currency: "USD",
+      sort: "9",
+      limit: "4",
+      page: "1",
     },
     headers: {
-      'X-RapidAPI-Key': 'b93a0037cbmsh6334c9022053620p1d848cjsndc98ae9825cf',
-      'X-RapidAPI-Host': 'unofficial-shein.p.rapidapi.com'
-    }
+      "X-RapidAPI-Key": "b93a0037cbmsh6334c9022053620p1d848cjsndc98ae9825cf",
+      "X-RapidAPI-Host": "unofficial-shein.p.rapidapi.com",
+    },
   };
-  
+
   const response = await axios.request(options).catch((err) => {
     return {};
   });
@@ -123,7 +125,7 @@ export const getRecentRemoteItems = async () => {
   const items = response.data.info.products;
   const result = [];
   if (items) {
-    items.forEach(item => {
+    items.forEach((item) => {
       const ourItem = {
         _id: item.goods_id,
         name: item.goods_name,
@@ -139,29 +141,28 @@ export const getRecentRemoteItems = async () => {
   } else {
     return {};
   }
-}
-
+};
 
 export const getAllRemoteItems = async (num) => {
   const options = {
-    method: 'GET',
-    url: 'https://unofficial-shein.p.rapidapi.com/products/list',
+    method: "GET",
+    url: "https://unofficial-shein.p.rapidapi.com/products/list",
     params: {
-      cat_id: '1980',
-      adp: '10170797',
-      language: 'en',
-      country: 'US',
-      currency: 'USD',
-      sort: '9',
+      cat_id: "1980",
+      adp: "10170797",
+      language: "en",
+      country: "US",
+      currency: "USD",
+      sort: "9",
       limit: num.toString(),
-      page: '1'
+      page: "1",
     },
     headers: {
-      'X-RapidAPI-Key': 'b93a0037cbmsh6334c9022053620p1d848cjsndc98ae9825cf',
-      'X-RapidAPI-Host': 'unofficial-shein.p.rapidapi.com'
-    }
+      "X-RapidAPI-Key": "b93a0037cbmsh6334c9022053620p1d848cjsndc98ae9825cf",
+      "X-RapidAPI-Host": "unofficial-shein.p.rapidapi.com",
+    },
   };
-  
+
   const response = await axios.request(options).catch((err) => {
     return {};
   });
@@ -169,7 +170,7 @@ export const getAllRemoteItems = async (num) => {
   const items = response.data.info.products;
   const result = [];
   if (items) {
-    items.forEach(item => {
+    items.forEach((item) => {
       const ourItem = {
         _id: item.goods_id,
         name: item.goods_name,
@@ -185,7 +186,7 @@ export const getAllRemoteItems = async (num) => {
   } else {
     return {};
   }
-}
+};
 
 export const getRemoteItemById = async (itemId) => {
   const options = {

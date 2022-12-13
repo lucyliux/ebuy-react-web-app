@@ -12,13 +12,13 @@ const Searchbar = () => {
       alert("Please enter a keyword");
     } else {
       dispatch(findItemsByKeywordThunk({ keyword: keyword, num: 20}));
-      navigate("/search-result");
+      navigate(`/search/${keyword}`);
     }
   };
 
   return (
     <>
-      <div>
+      <div className="mt-4">
         <input
           placeholder="Search eBuy"
           className="form-control rounded-pill ps-5"

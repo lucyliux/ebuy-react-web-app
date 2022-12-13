@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { findRecentListingsThunk, findRecentLikesThunk, findItemsByKeywordThunk, findAllListingsThunk, findAllLikesThunk, getRecentRemoteItemsThunk, getAllRemoteItemsThunk } from "../services/items/items-thunks";
+import { findRecentListingsThunk, findRecentLikesThunk, findItemsByKeywordThunk, findAllListingsThunk, findAllLikesThunk, getRecentRemoteItemsThunk, getAllRemoteItemsThunk, deleteItemThunk } from "../services/items/items-thunks";
 
 const itemsSlice = createSlice({
   name: "items",
@@ -17,7 +17,6 @@ const itemsSlice = createSlice({
   },
   extraReducers: {
     [findRecentLikesThunk.fulfilled]: (state, action) => {
-
       state.recentLikes = action.payload;
       state.loading = false;
     },
@@ -46,7 +45,7 @@ const itemsSlice = createSlice({
       state.loading = true;
     },
     [findItemsByKeywordThunk.fulfilled]: (state, action) => {
-      if (action.payload.length === state.searchResult.length) {
+      if (action.payload.length <= state.searchResult.length) {
         state.noMoreResults = true;
       }
       state.currentSearch = action.meta.arg;
@@ -54,6 +53,8 @@ const itemsSlice = createSlice({
       state.loading = false;
     },
     [findItemsByKeywordThunk.pending]: (state, action) => {
+      state.noMoreResults = false;
+      state.searchResult = [];
       if (action.meta.arg.num === 20) {
         state.loading = true;
       }
@@ -79,6 +80,10 @@ const itemsSlice = createSlice({
         state.loading = true;
       }
     },
+    [deleteItemThunk.fulfilled]: (state, action) => {
+      state.allListings.filter(item => item._id !== action.payload)
+      state.recentListings.filter(item => item._id !== action.payload)
+    }
   },
 });
 

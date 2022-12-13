@@ -29,10 +29,10 @@ const AllListings = () => {
   return (
     <>
       <div className="row align-items-start me-5 mb-5">
-        <div className="col-1" style={{ fontSize: "30px" }} onClick={onBackClick}>
+        <div className="col-2 col-sm-1" style={{ fontSize: "30px" }} onClick={onBackClick}>
           <i className="bi bi-chevron-left"></i>
         </div>
-        <div className="col-11 m-0 p-0 position-relative" style={{ top: "5px" }}>
+        <div className="col-10 col-sm-11 m-0 p-0 position-relative" style={{ top: "5px" }}>
           <h4>{headerText}</h4>
           {loading && <span>Loading...</span>}
           {!loading && <ItemPreviewList items={allItems} />}

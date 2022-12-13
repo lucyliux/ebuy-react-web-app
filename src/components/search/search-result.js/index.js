@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { findItemsByKeywordThunk } from "../../services/items/items-thunks";
-import Searchbar from "../home/searchbar";
-import ItemPreviewList from "../item-preview-list";
+import { findItemsByKeywordThunk } from "../../../services/items/items-thunks";
+import ItemPreviewList from "../../item-preview-list";
 
 const SearchResult = () => {
   const { searchResult, currentSearch, loading, noMoreResults } = useSelector((state) => state.items);
@@ -12,7 +11,6 @@ const SearchResult = () => {
   return (
     <>
       <div className="mb-5">
-        <Searchbar />
         {!loading && (
           <div className="mb-2" style={{ fontSize: "25px" }}>
             Search results for <b>{currentSearch.keyword}</b>
@@ -25,7 +23,7 @@ const SearchResult = () => {
           </span>
         )}
         {!loading && <ItemPreviewList items={searchResult} />}
-        {!loading && !noMoreResults && (
+        {!loading && !noMoreResults && searchResult.length !== 0 && (
           <button onClick={onLoadMoreClick} className="btn btn-primary override-bs rounded-pill wd-center mt-4 ps-4 pe-4" style={{ backgroundColor: "#1E1E1E", borderColor: "white", zIndex: "1" }}>
             Load more
           </button>

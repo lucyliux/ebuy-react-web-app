@@ -1,4 +1,3 @@
-import Searchbar from "./searchbar";
 import ItemPreviewList from "../item-preview-list";
 import { useSelector } from "react-redux";
 import { newItemsExample } from "../../services/items/items";
@@ -9,7 +8,6 @@ const HomeComponent = () => {
   return (
     <>
       <div className="ps-5 pe-5">
-        <Searchbar />
         <b style={{ fontSize: "30px" }}>Hi, {currentUser !== null && currentUser !== "" ? currentUser.username : "please sign in or create an account"}!</b>
         <br />
         <br />
