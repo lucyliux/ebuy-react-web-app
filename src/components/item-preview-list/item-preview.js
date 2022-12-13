@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { deleteItemThunk, findAllListingsThunk, findRecentListingsThunk } from "../../services/items/items-thunks";
+import { updateThunk } from "../../services/users/users-thunks";
 
 const ItemPreview = ({ item, renderHeart = false }) => {
   const { currentUser } = useSelector((state) => state.users);
@@ -13,15 +14,18 @@ const ItemPreview = ({ item, renderHeart = false }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const isCurrentSeller = currentUser!== null && currentUser.username === item.sellerName && !location.pathname.startsWith("/search");
+  const isCurrentSeller = currentUser !== null && currentUser.username === item.sellerName && !location.pathname.startsWith("/search");
   const margin = isCurrentSeller ? "-40px" : "";
   const onClickItem = () => {
     navigate("/item-details/" + item._id, { state: { item: item } });
   };
   const onDeleteItem = () => {
     dispatch(deleteItemThunk(item._id));
-    dispatch(findRecentListingsThunk(currentUser.listings));
-    dispatch(findAllListingsThunk(currentUser.listings));
+    const updatedUser = { ...currentUser };
+    updatedUser.listings.replace(item._id + ",", "");
+    dispatch(updateThunk(updatedUser));
+    dispatch(findRecentListingsThunk(updatedUser.listings));
+    dispatch(findAllListingsThunk(updatedUser.listings));
   };
 
   return (
