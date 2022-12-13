@@ -17,6 +17,7 @@ const itemsSlice = createSlice({
   },
   extraReducers: {
     [findRecentLikesThunk.fulfilled]: (state, action) => {
+
       state.recentLikes = action.payload;
       state.loading = false;
     },

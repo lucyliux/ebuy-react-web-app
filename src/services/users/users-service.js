@@ -9,7 +9,6 @@ const api = axios.create({
 
 export const signup = async (user) => {
   const response = await api.post(`${SECURITY_API}/signup`, user)
-    // .catch((err) => alert("Username already exists"));
 
   return response.data;
 };
@@ -26,8 +25,3 @@ export const profile = async () => api.post(`${SECURITY_API}/profile`).then((res
 export const update = async (user) => api.put(USER_API_URL, user).then((response) => response.data);
 
 export const findUserByName = async (username) => api.get(`${USER_API_URL}/${username}`).then((response) => response.data);
-// export const findUserByUsername = async (username) => {
-//   const response = await axios.get(USERS_API + "/" + username);
-//   const buyer = response.data;
-//   return buyer;
-// }

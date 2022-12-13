@@ -98,6 +98,7 @@ const Listings = ({ user }) => {
         </div>
         {loading&& <span>Loading...</span>}
         {!loading && <ItemPreviewList items={recentListings} />}
+        {!loading && recentListings.length === 0 && <span><br/>Post your first listing here!</span>}
       </div>
     </>
   );

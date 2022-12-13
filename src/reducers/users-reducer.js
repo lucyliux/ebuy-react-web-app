@@ -7,12 +7,10 @@ const usersSlice = createSlice({
     allUsers: [],
     loading: false,
     currentUser: null,
-    // publicProfile: null,
   },
   extraReducers: {
     [signupThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload;
-      // state.allUsers.push(action.payload);
     },
     [signupThunk.rejected]: (state, action) => {
       alert("Username already exists");

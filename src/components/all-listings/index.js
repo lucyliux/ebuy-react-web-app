@@ -10,6 +10,7 @@ const AllListings = () => {
   const profileUser = location.state.profileUser;
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isShein = profileUser.username === "SHEIN";
   const onBackClick = () => {
     navigate("/profile", { state: { profileUser: profileUser } });
   };
@@ -35,7 +36,7 @@ const AllListings = () => {
           <h4>{headerText}</h4>
           {loading && <span>Loading...</span>}
           {!loading && <ItemPreviewList items={allItems} />}
-          {!loading && !noMoreResults && (
+          {!loading && !noMoreResults && isShein && (
             <button onClick={onLoadMoreClick} className="btn btn-primary override-bs rounded-pill wd-center mt-4 ps-4 pe-4" style={{ backgroundColor: "#1E1E1E", borderColor: "white", zIndex: "1" }}>
               Load more
             </button>

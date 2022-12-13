@@ -1,8 +1,5 @@
 import axios from "axios";
 import { API_BASE } from "../api";
-// import * as fs from "fs";
-// import { createReadStream } from "fs";
-// import * as imgur from "imgur";
 const ITEMS_API = `${API_BASE}/items`;
 
 const api = axios.create({
@@ -89,7 +86,6 @@ export const findRemoteItemsByKeyword = async ({ keyword, num }) => {
     items.push({
       _id: result.goods_id,
       name: result.goods_name,
-      // date: Date,
       condition: "NEW",
       price: Number(result.salePrice.amount),
       image: result.goods_img,

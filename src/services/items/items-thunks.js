@@ -4,6 +4,9 @@ import * as service from "./items-service";
 export const createItemThunk = createAsyncThunk("createItem", async (item) => await service.createItem(item));
 
 export const findRecentLikesThunk = createAsyncThunk("findRecentLikes", async (itemIds) => {
+  if (itemIds === "") {
+    return [];
+  }
   let recentLikes = itemIds;
   let remoteLikes = await service.findRecentRemoteLikes(recentLikes);
   remoteLikes = remoteLikes.filter((like) => like.name !== undefined);
@@ -24,19 +27,14 @@ export const findRecentLikesThunk = createAsyncThunk("findRecentLikes", async (i
       return remoteLikes.concat(mongoLikes);
     }
   }
-  // return remoteLikes.concat(mongoLikes);
-  //   return {
-  //     _id: "639357f0cfa29b7e706cf199",
-  //     name: "haha",
-  // condition: "NEW",
-  // price: 12,
-  // image: "",
-  // description: "haha",
-  // sellerName: "seller3",
-  //   };
 });
 
-export const findRecentListingsThunk = createAsyncThunk("findRecentListings", async (itemIds) => await service.findRecentListings(itemIds));
+export const findRecentListingsThunk = createAsyncThunk("findRecentListings", async (itemIds) => {
+  if (itemIds === "") {
+    return [];
+  }
+  return await service.findRecentListings(itemIds);
+});
 
 export const findAllListingsThunk = createAsyncThunk("findAllListings", async (itemIds) => await service.findAllListings(itemIds));
 

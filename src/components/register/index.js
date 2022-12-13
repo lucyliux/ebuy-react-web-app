@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signupThunk } from "../../services/users/users-thunks";
 import { useNavigate } from "react-router-dom";
-import { getRecentRemoteItemsThunk } from "../../services/items/items-thunks";
+import { findRecentLikesThunk, findRecentListingsThunk, getRecentRemoteItemsThunk } from "../../services/items/items-thunks";
 
 const RegisterComponent = () => {
   const [role, setRole] = useState("");
@@ -46,8 +46,11 @@ const RegisterComponent = () => {
         avatar: "https://www.simpleimageresizer.com/_uploads/photos/e7c8bb42/user_50.png"
       };
       dispatch(signupThunk(newUser)).then((response) => {
-        if (response.payload !== undefined) {
+        const user = response.payload
+        if (user !== undefined) {
           dispatch(getRecentRemoteItemsThunk());
+          dispatch(findRecentListingsThunk(user.listings));
+          dispatch(findRecentLikesThunk(user.likes))
           alert("Success!");
           navigate("/");
         }

@@ -33,7 +33,6 @@ const RecentLikes = () => {
         <h5 className="wd-text-align-left" style={{ fontWeight: "bold" }}>
           Your recent likes
         </h5>
-        <br />
         {loading && <span>Loading...</span>}
         {!loading && recentLikes.length === 0 && <span>You don't have any liked items. Explore eBuy using the search bar above!</span>}
         {!loading && <ItemPreviewList items={recentLikes} renderHeart={true} />}
