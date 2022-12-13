@@ -22,8 +22,7 @@ const ReviewComponent = ({ review }) => {
   };
   const onDeleteReview = () => {
     const sellerName = review.sellerName;
-    dispatch(deleteReviewThunk(review._id));
-    dispatch(findReviewsBySellerThunk(sellerName));
+    dispatch(deleteReviewThunk(review._id)).then(() => dispatch(findReviewsBySellerThunk(sellerName)));
   };
   const isCurrentBuyer = currentUser !== null && currentUser.username === review.buyerName;
   const isAllReviews = location.pathname.startsWith("/profile/seller/all-reviews");
