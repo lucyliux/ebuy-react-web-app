@@ -13,13 +13,15 @@ const SearchResult = () => {
     <>
       <div className="mb-5">
         <Searchbar />
-        <div className="mb-2" style={{ fontSize: "25px" }}>
-          Search results for <b>{currentSearch.keyword}</b>
-        </div>
+        {!loading && (
+          <div className="mb-2" style={{ fontSize: "25px" }}>
+            Search results for <b>{currentSearch.keyword}</b>
+          </div>
+        )}
         {loading && <span>Loading...</span>}
         {!loading && searchResult.length === 0 && (
           <span>
-            No search results for <b>{currentSearch}</b>
+            No search results for <b>{currentSearch.keyword}</b>
           </span>
         )}
         {!loading && <ItemPreviewList items={searchResult} />}
@@ -28,7 +30,13 @@ const SearchResult = () => {
             Load more
           </button>
         )}
-        {!loading && noMoreResults && <div class="wd-center mt-3 ps-4 pe-4"><span >No more results for <b>{currentSearch.keyword}</b></span></div>}
+        {!loading && searchResult.length !== 0 && noMoreResults && (
+          <div class="wd-center mt-3 ps-4 pe-4">
+            <span>
+              No more results for <b>{currentSearch.keyword}</b>
+            </span>
+          </div>
+        )}
       </div>
     </>
   );
