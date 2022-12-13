@@ -22,7 +22,7 @@ const ItemPreview = ({ item, renderHeart = false }) => {
   const onDeleteItem = () => {
     dispatch(deleteItemThunk(item._id));
     const updatedUser = { ...currentUser };
-    updatedUser.listings.replace(item._id + ",", "");
+    updatedUser.listings = updatedUser.listings.replace(item._id + ",", "");
     dispatch(updateThunk(updatedUser));
     dispatch(findRecentListingsThunk(updatedUser.listings));
     dispatch(findAllListingsThunk(updatedUser.listings));
